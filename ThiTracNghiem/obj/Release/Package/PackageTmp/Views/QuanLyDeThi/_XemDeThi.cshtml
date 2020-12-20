@@ -1,0 +1,127 @@
+﻿@model IEnumerable<CauHoi>
+@using ThiTracNghiem.Models
+@{
+    int i = 1;
+    <div id="Left">
+        <div style="background-color:white;margin-top:0px;">
+            <h4 style="font-weight:bold;text-transform:uppercase;">@ViewBag.TieuDe</h4>
+            <input type="text" style="width:40px;" id="soCaucuaDe" readonly />câu | 
+            Thời gian: <input type="text" style="width:40px;" id="thoiGian" value="@ViewBag.thoiGian" />phút | 
+            <input type="button" id="btnSuaDe1" value="Sửa đề" onclick="SuaDe()" />
+            <a href="/QuanLyDeThi/XoaDeThi?idDeThi=@ViewBag.idDe"><input type="button" value="Xóa đề" /></a>
+            <input type="button" id="btnLuu1" value="Lưu" onclick="LuuDe();" hidden>
+            <a href="/QuanLyDeThi/CauHoiCuaDe?idDe=@ViewBag.idDe">
+                <input type="button" id="btnThoat1" value="Thoát" onclick="Thoat();" hidden>
+            </a>
+        </div>
+        <div id="VungCauHoi">
+            <script>
+                $("#De_" + '@ViewBag.idDe').css({ 'background-color': '#4796b3' });
+                var CauHoi = [];
+            </script>
+            @foreach (CauHoi CH in Model)
+            {
+                <div id="CauHoiCuaDe_@CH.idCauHoi" style="margin-top:10px" class="CauHoi">
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span style="font-weight:bold;color:blue;margin-right:5px;">Câu @CH.idCauHoi: </span>
+                                    <span style="font-style:italic">Độ khó: <b>@CH.doKho</b> | Độ phân biệt: <b>@CH.doPhanBiet</b> | Độ Khó IRT: <b>@CH.a2</b> | Độ phân biết IRT:<b>@CH.b2</b> | TG trả lời: <b>@CH.tgTraLoi</b> giây</span>
+                                    <img src="~/Images/SotRac.png" alt="Xóa" height="20" style="margin-left:10px;" onclick="XoaCauHoi('@CH.idCauHoi')" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.Raw(CH.noiDung)
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    @{
+                List<DapAn> DA = CH.CacDapAn.Where(x => x.idCauHoi == CH.idCauHoi).ToList();
+                char cau = 'A';
+                    }
+                    <div style="margin-left:30px;">
+                        @for (int j = 0; j < DA.Count; j++)
+                        {
+                            <table>
+                                @if (DA[j].isDapAnDung)
+                                {
+                                    <tr>
+                                        <td style="vertical-align:top">
+                                            <p style="color:red; margin-right:5px;vertical-align:top">
+                                                @cau.
+                                            </p>
+                                        </td>
+                                        <td style="color:red;word-wrap:break-word">
+                                            @Html.Raw(DA[j].noiDung)
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td style="vertical-align:top">
+                                            <p style="margin-right:5px; font-weight:bold">
+                                                @cau.
+                                            </p>
+                                        </td>
+                                        <td>
+                                            @Html.Raw(DA[j].noiDung)
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                                cau++;
+                        }
+                    </div>
+                </div>
+                <script>
+                    CauHoi.push('@CH.idCauHoi');
+                </script>
+                        i++;
+            }
+        </div>
+</div>
+    <div id="Right"></div>
+    using (Html.BeginForm("LuuDeThi", "QuanLyDeThi", FormMethod.Post, new { name = "LDT" }))
+    {
+        <input type="hidden" name="idDeThi" value="@ViewBag.idDe"/>
+        <input type="hidden" name="CauHoi" id="cauHois" value="" />
+        <input type="hidden" name="thoiGianLamBai" id="TG" value="" />
+    }
+    <script>
+        soCaucuaDe.value = CauHoi.length;
+        function SuaDe() {
+            $.ajax({
+                type: "GET",
+                url: "/QuanLyDeThi/TatCaCauHoi?idDeThi="+'@ViewBag.idDe',
+                success: function (data) {
+                    $("#Left").attr('class', 'DeTrai');
+                    $('#btnSuaDe1').attr('hidden', true);
+                    $('#btnLuu1').attr('hidden', false);
+                    $('#btnThoat1').attr('hidden', false);
+                    $("#Right").html(data.toString());
+                    $("#Right").attr('class','DePhai');
+                }
+            });
+        }
+        function LuuDe() {
+            cauHois.value = CauHoi.toString();
+            TG.value = document.getElementById("thoiGian").value;
+            document.LDT.submit();
+        }
+        function XoaCauHoi(idCauHoi) {
+            $("#CauHoiCuaDe_" + idCauHoi).remove();
+            CauHoi.splice(Contain(idCauHoi), 1);
+            soCaucuaDe.value = CauHoi.length;
+        }
+        function Contain(str){
+            for (var k = 0; k < CauHoi.length; k++) {
+                if (CauHoi[k] == str) return k;
+            }
+            return -1;
+        }
+    </script>
+}

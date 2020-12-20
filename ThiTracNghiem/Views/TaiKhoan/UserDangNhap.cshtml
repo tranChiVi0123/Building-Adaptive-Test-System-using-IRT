@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<script language="JavaScript">
+    $("#dn").css({ 'background-color': '#096484' });
+    function DangNhap() {
+        if (username.value.length == 0) {
+            txtThongBao.value = 'Bạn chưa nhập tên đăng nhập';
+            username.focus();
+            return;
+        }
+        if (pass.value.length == 0) {
+            txtThongBao.value = 'Bạn chưa nhập mật khẩu';
+            pass.focus();
+            return;
+        }
+        document.UserLogin.submit();
+    }
+</script>
+<div style="width:100%;margin-top:30px;">
+    <div style="width:450px;border:solid 1px red;border-radius:5px;background-color:rgba(0, 0, 0, 0.05)">
+        <center>
+            <h2>ĐĂNG NHẬP</h2>
+        </center>
+        <div style="float:left;">
+            <img src="~/Images/login_icon.png" style="width:150px" />
+        </div>
+        <div style="float:left;">
+            @using (@Html.BeginForm("CheckUserLogin", "TaiKhoan", FormMethod.Post, new { name = "UserLogin" }))
+            {
+                <input type="text" placeholder="Tên đăng nhập" name="username" id="username" value="@ViewBag.username" onkeydown="txtThongBao.value = '';" style="height:35px;width:250px;border-radius:5px;border:solid 1px black;padding:3px;font-size:16px;" /><br />
+                <input type="password" placeholder="Mật khẩu" name="pass" id="pass" onkeydown="txtThongBao.value = '';" style="height:35px;width:250px;border-radius:5px;margin-top:20px;border:solid 1px black;padding:3px;font-size:16px;" /><br />
+            }
+            <input type="button" style="margin-top:20px;width:150px;height:30px;" value="Đăng Nhập" onclick="DangNhap();" />
+        </div>
+        <input type="text" id="txtThongBao" readonly="readonly" style="width:400px;border:none;background-color:transparent;margin-bottom:2px;font-weight:bold;color:red;font-size:15px;" value="@ViewBag.TB" />
+    </div>
+</div>
+

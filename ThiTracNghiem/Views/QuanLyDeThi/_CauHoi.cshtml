@@ -1,0 +1,61 @@
+﻿@model CauHoi
+@using ThiTracNghiem.Models
+@{
+    CauHoi CH = Model;
+}
+<div>
+    <table>
+        <tr>
+            <td>
+                <span style="font-weight:bold;color:blue;margin-right:5px;">Câu @CH.idCauHoi: </span>
+                <span style="font-style:italic">Độ khó: <b>@CH.doKho</b> | Độ phân biệt: <b>@CH.doPhanBiet</b> | Độ dự đoán: <b>@String.Format("{0:0.##}",CH.c)</b> | TG trả lời: <b>@CH.tgTraLoi</b> giây</span>
+                <img src="~/Images/edit.png" alt="Sửa" height="20" style="margin-left:10px;" onclick="Sua('@CH.idCauHoi')" />
+                <img src="~/Images/xoa.png" alt="Xóa" height="20" style="margin-left:10px;" onclick="Xoa('@CH.idCauHoi')" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Raw(CH.noiDung)
+            </td>
+        </tr>
+    </table>
+</div>        
+        @{
+            List<DapAn> DA = CH.CacDapAn.Where(x => x.idCauHoi == CH.idCauHoi).ToList();
+            char cau = 'A';
+        }
+        <div style="margin-left:30px;">
+    @for (int j = 0; j < DA.Count; j++)
+    {
+        <table>
+            @if (DA[j].isDapAnDung)
+            {
+                <tr>
+                    <td style="vertical-align:top">
+                        <p style="color:red; margin-right:5px;">
+                            @cau.
+                        </p>
+                    </td>
+                    <td style="color:red">
+                        @Html.Raw(DA[j].noiDung)
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td style="vertical-align:top">
+                        <p style="margin-right:5px; font-weight:bold">
+                            @cau.
+                        </p>
+                    </td>
+                    <td>
+                        @Html.Raw(DA[j].noiDung)
+                    </td>
+                </tr>
+            }
+        </table>
+            cau++;
+    }
+</div>
+       

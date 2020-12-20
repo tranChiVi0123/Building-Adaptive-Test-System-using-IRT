@@ -1,0 +1,45 @@
+﻿@using ThiTracNghiem.Models
+@{
+    ViewBag.Title = "Làm bài thi";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<script>
+    $("#trangchu").css({ 'background-color': '#096484' });
+</script>
+@using (Html.BeginForm("NopBaiThiTheoTD", "TrangThiSinh", FormMethod.Post, new { name = "NB" }))
+{ }
+<div style="text-align:left" id="HienThiCauHoi">
+    @Html.Partial("_CauHoiThi")
+</div>
+<div>
+    <div style="float:left;width:40%;margin-left:30px;padding:10px;text-align:left">
+        <input type="button" value="Câu tiếp theo" onclick="CauTiepTheo();"/>
+    </div>
+    <div style="float:right;width:40%;margin-left:30px;padding:10px;text-align:right">
+        <input type="button" value="Nộp bài" onclick="NopBai();" />
+    </div>
+</div>
+<script>
+    function LayChuoiChk(name) {
+        var chuoi = "";
+        for (var i = 0; i < document.getElementsByName(name).length; i++) {
+            if (document.getElementsByName(name)[i].checked) {
+                chuoi += document.getElementsByName(name)[i].value + ",";
+            }
+        }
+        return chuoi.substring(0, chuoi.length - 1);
+    }
+    function CauTiepTheo() {
+        clearTimeout(timeout);
+        $.ajax({
+            type: "GET",
+            url: "/TrangThiSinh/KiemTraTraLoiCauHoi?idCauHoi=" + idCauHoi.value + "&&dapAnDaChon=" + LayChuoiChk("DapAnCuaCauHoi"),
+            success: function (data) {
+                $("#HienThiCauHoi").html(data.toString());
+            }
+        });
+    }
+    function NopBai() {
+        document.NB.submit();
+    }
+</script>

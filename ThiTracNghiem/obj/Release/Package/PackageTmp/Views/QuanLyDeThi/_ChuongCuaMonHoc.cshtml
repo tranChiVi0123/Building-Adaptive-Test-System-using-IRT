@@ -1,0 +1,31 @@
+﻿@using ThiTracNghiem.Models
+@{
+    List<Chuong> C = new List<Chuong>();
+    if (ViewBag.Chuong != null)
+    {
+        C = ViewBag.Chuong;
+    }
+}
+<table border="1" cellpadding="4" cellspacing="6" class="BangHienThi">
+    <tr class="TieuDe">
+        <td colspan="4" class="TieuDeBang">Chương</td>
+    </tr>
+    <tr class="TieuDe">
+        <td class="TieuDeCot">ID</td>
+        <td class="TieuDeCot">Tên chương</td>
+        <td class="TieuDeCot">Xóa</td>
+        <td class="TieuDeCot">Xem đề</td>
+    </tr>
+    @for (int i = 0; i < C.Count; i++)
+    {
+        <tr>
+            <td style="padding:2px;">@C[i].idChuong
+            <input type="hidden" name="IDChuong" value="@C[i].idChuong" />
+            </td>
+            <td style="padding:2px;"><input type="text" id="EditChuong_@C[i].idChuong" value="@C[i].tenChuong" onblur="LuuEditChuong('@C[i].idChuong')" /></td>
+            <td style="padding:2px;"><img src="~/Images/xoa.png" alt="Xóa" onclick="XoaChuong('@C[i].idChuong');" /></td>
+            <td style="padding:2px;"><img src="~/Images/jTxonx8Lc.png" alt="Xem" width="20" onclick="XemDeThi('@C[i].idChuong')" /></td>
+        </tr>
+    }
+</table>
+

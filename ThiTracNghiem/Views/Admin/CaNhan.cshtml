@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Cá Nhân";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using ThiTracNghiem.Models
+<script>
+    $("#cnadm").css({ 'background-color': '#096484' });
+</script>
+Họ và tên: <input type="text" name="hoTen" id="hoTen" value="@(((TaiKhoanAdmin)Session["Admin"]).hoTen)" onblur="Luu();" style="border:solid 1px black;padding:2px;margin:5px;margin-left:41px;width:300px;height:30px;border-radius:3px;"/><br />
+Tên đăng nhập: <input type="text" name="TDN" id="TDN" value="@(((TaiKhoanAdmin)Session["Admin"]).tenDagNhap)" readonly style="border:solid 1px black;padding:2px;margin:5px;width:300px;height:30px;border-radius:3px;" />
+@using (Html.BeginForm("DoiMatKhau", "Admin", FormMethod.Post, new { name = "DMK" }))
+{
+    string TB = "";
+    if (ViewBag.TB != null) { TB = ViewBag.TB; }
+    <div style="border:solid 1px blue;margin-top:50px;padding:10px;">
+        <script language="JavaScript">
+            function SetTB() {
+                txtThongBao.value = "";
+            }
+        </script>
+        <span style="font-size:15px;font-weight:bold;float:left;">Đổi mật khẩu</span><br />
+        <input type="text" id="txtThongBao" readonly="readonly" style="width:940px; color:red;border:none" value="@TB" />
+        <span></span>
+        <span>Mật khẩu cũ:</span>
+        <input type="password" name="MatKhauCu" style="width:150px;" onkeypress="SetTB();" />
+        <span>Mật khẩu mới:</span>
+        <input type="password" name="MatKhauMoi" style="width:150px;" onkeypress="SetTB();" />
+        <span>Xác nhận mật khẩu</span>
+        <input type="password" name="XacNhanMK" style="width:150px;" onkeypress="SetTB();" />
+        <input type="button" value="Lưu mật khẩu" style="float:none;" onclick="document.DMK.submit();" />
+    </div><br /><br />
+    if (((TaiKhoanAdmin)Session["Admin"]).isAdmin)
+    {
+        <a href="/Admin/QuanLyTaiKhoan">
+            <input type="button" value="Các Tài Khoản Khác" />
+        </a>
+    }
+}
+<script>
+    function Luu() {
+        if (document.getElementById("hoTen").value.length < 1) {
+            alert("Bạn phải nhập họ và tên");
+            return;
+        }
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/Admin/SuaHoTen?hoTen=" + document.getElementById("hoTen").value,
+            dataType: "json",
+            success: function (data) {                
+            }
+        });
+    }
+</script>

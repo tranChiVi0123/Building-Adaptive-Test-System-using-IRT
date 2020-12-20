@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Kết quả thi";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<script>
+    $("#trangchu").css({ 'background-color': '#096484' });
+</script>
+<table border="1" cellpadding="4" cellspacing="6" class="BangHienThi" style="margin-top:30px;width:100%">
+    <tr class="TieuDe">
+        <td class="TieuDeBang" colspan="5">KẾT QUẢ LÀM BÀI</td>
+    </tr>
+    <tr class="TieuDe">
+        <td class="TieuDeCot">User</td>
+        <td class="TieuDeCot">Thời gian nộp bài</td>
+        <td class="TieuDeCot">Tổng số câu hỏi</td>
+        <td class="TieuDeCot">Số câu làm đúng</td>
+        <td class="TieuDeCot">Điểm</td>
+    </tr>
+    <tr>
+        <td style="padding:2px;">@Session["tenDangNhap"]</td>
+        <td style="padding:2px;">@String.Format("{0:dd/MM/yyyy HH:mm}",DateTime.Now)</td>
+        <td style="padding:2px;">@ViewBag.tongSoCauHoi</td>
+        <td style="padding:2px;">@ViewBag.chonDung</td>
+        <td style="padding:2px;">@String.Format("{0:#.00}", ViewBag.Diem)</td>
+    </tr>
+</table>

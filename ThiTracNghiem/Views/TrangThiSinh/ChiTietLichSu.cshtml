@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "Chi tiết lịch sử";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    int i = 1;
+    List<ChiTietLichSu> CT = ViewBag.ChiTietLichSu;
+}
+@using ThiTracNghiem.Models
+<script>
+    $("#lslb").css({ 'background-color': '#096484' });
+</script>
+<h3>@Html.Raw(ViewBag.tieuDe)</h3>
+<label style="width:30px;height:15px;background-color:violet; margin-left:10px;margin-right:2px;margin-bottom:0px;"></label> : Đáp án bạn chọn là đúng
+<label style="width:30px;height:15px;background-color:green; margin-left:10px;margin-right:2px;margin-bottom:0px;"></label> : Đáp án bạn chọn là sai
+<label style="width:30px;height:15px;background-color:red; margin-left:10px;margin-right:2px;margin-bottom:0px;"></label> : Đáp án đúng của câu hỏi
+<div style="text-align:left">
+    @foreach (CauHoi CH in ViewBag.CauHoi)
+    {
+        <div id="CauHoi_@CH.idCauHoi" style="margin-top:10px" class="CauHoi">
+            <div>
+                <table>
+                    <tr>
+                        <td style="vertical-align:top">
+                            <span style="font-weight:bold;color:blue;margin-right:5px;">Câu @i: </span>
+                        </td>
+                        <td>
+                            @Html.Raw(CH.noiDung)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            @{
+        List<DapAn> DA = CH.CacDapAn.Where(x => x.idCauHoi == CH.idCauHoi).ToList();
+        char cau = 'A';
+            }
+            <div style="margin-left:30px;">
+                @for (int j = 0; j < DA.Count; j++)
+                {
+                    if (DA[j].isDapAnDung)
+                    {
+                        if (CT.Where(x => x.idCauHoi == CH.idCauHoi && x.idDapAn == DA[j].idDapAn).ToList().Count > 0)
+                        {
+                            <table>
+                                <tr>
+                                    <td style="vertical-align:top">
+                                        <p style="margin-right:5px; font-weight:bold; color:violet;">
+                                            @cau.
+                                        </p>
+                                    </td>
+                                    <td style="color:violet;">
+                                        @Html.Raw(DA[j].noiDung)
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                        else
+                        {
+                            <table>
+                                <tr>
+                                    <td style="vertical-align:top">
+                                        <p style="margin-right:5px; font-weight:bold;color:red;">
+                                            @cau.
+                                        </p>
+                                    </td>
+                                    <td style="color:red;">
+                                        @Html.Raw(DA[j].noiDung)
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                    }
+                    else
+                    {
+                        if (CT.Where(x => x.idCauHoi == CH.idCauHoi && x.idDapAn == DA[j].idDapAn).ToList().Count > 0)
+                        {
+                            <table>
+                                <tr>
+                                    <td style="vertical-align:top">
+                                        <p style="margin-right:5px; font-weight:bold;color:green;">
+                                            @cau.
+                                        </p>
+                                    </td>
+                                    <td style="color:green;">
+                                        @Html.Raw(DA[j].noiDung)
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                        else
+                        {
+                            <table>
+                                <tr>
+                                    <td style="vertical-align:top">
+                                        <p style="margin-right:5px; font-weight:bold;">
+                                            @cau.
+                                        </p>
+                                    </td>
+                                    <td>
+                                        @Html.Raw(DA[j].noiDung)
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                    }
+                    cau++;
+                }
+            </div>
+        </div>
+                i++;
+    }
+</div>
+

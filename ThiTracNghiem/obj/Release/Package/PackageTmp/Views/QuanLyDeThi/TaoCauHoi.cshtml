@@ -1,0 +1,230 @@
+﻿@{
+    ViewBag.Title = "Tạo Câu Hỏi";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using ThiTracNghiem.Models;
+@using (Html.BeginForm("LuuCauHoi", "QuanLyDeThi", FormMethod.Post, new { name = "TCH" }))
+{
+    <script>
+        $("#mntch").css({ 'background-color': '#096484' });
+    </script>
+    <table id="tblCauHoi">
+    <tr>
+        <td colspan="2">
+            <span>Môn học: </span>
+            <select id="MonHoc" name="MonHoc" onchange="ChonChuong();">
+                @foreach (MonHoc MH in ViewBag.MonHoc)
+                {
+                    <option value="@MH.idMonHoc">@MH.tenMonHoc</option>
+                }
+            </select>
+            <span>Chương: </span>
+            <select id="Chuong" name="Chuong">
+                @foreach (Chuong C in ViewBag.Chuong)
+                {
+                    <option value="@C.idChuong">@C.tenChuong</option>
+                }
+            </select>
+            <span>Độ khó: </span>
+            <input type="text" style="width:50px" name="DoKho" id="DoKho" />
+            <span>Độ phân biệt: </span>
+            <input type="text" style="width:50px" name="DoPhanBiet" id="DoPhanBiet" />
+            <span>Độ khó IRT: </span>
+            <input type="text" style="width:50px" name="DoKhoIRT" id="DoKhoIRT" />
+            <span>Độ phân biệt IRT: </span>
+            <input type="text" style="width:50px" name="DoPhanBietIRT" id="DoPhanBietIRT" />
+            <span>TG trả lời: </span>
+            <input type="text" style="width:50px" name="tgTraLoi" id="tgTraLoi" value="75"/>giây
+        </td>
+    </tr>
+        <tr>
+            <td colspan="2">
+                <span><b>Nhập nội dung câu hỏi:</b></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea id="CauHoi" name="CauHoi" cols="70" rows="5"></textarea>
+            </td>
+        </tr>
+        <tr id="hang_1">
+            <td>
+                <input type="button" value="Xóa" onclick="XoaCauTraLoi(1);"/>
+                <input type="checkbox" id="Check_1" name="Check" value="1"/>
+                <span id="Nhan_1"><b>A. </b></span>
+            </td>
+            <td>
+                <textarea id="TraLoi_1" name="TraLoi_1" cols="40" rows="2"></textarea>
+            </td>
+        </tr>
+        <tr id="hang_2">
+            <td>
+                <input type="button" value="Xóa" onclick="XoaCauTraLoi(2);" />
+                <input type="checkbox" id="Check_2" name="Check" value="2"/>
+                <span id="Nhan_2"><b>B. </b></span>
+            </td>
+            <td>
+                <textarea id="TraLoi_2" name="TraLoi_2" cols="40" rows="2"></textarea>
+            </td>
+        </tr>
+        <tr id="hang_3">
+            <td>
+                <input type="button" value="Xóa" onclick="XoaCauTraLoi(3);" />
+                <input type="checkbox" id="Check_3" name="Check" value="3"/>
+                <span id="Nhan_3"><b>C. </b></span>
+            </td>
+            <td>
+                <textarea id="TraLoi_3" name="TraLoi_3" cols="40" rows="2"></textarea>
+            </td>
+        </tr>
+        <tr id="hang_4">
+            <td>
+                <input type="button" value="Xóa" onclick="XoaCauTraLoi(4);"/>
+                <input type="checkbox" id="Check_4" name="Check" value="4"/>
+                <span id="Nhan_4"><b>D. </b></span>
+            </td>
+            <td>
+                <textarea id="TraLoi_4" name="TraLoi_4" cols="40" rows="2"></textarea>
+            </td>
+        </tr>
+    </table><br />
+    <input type="button" value="Thêm câu trả lời" onclick="ThemCauTraLoi();"/>
+    <input type="button" value="Lưu câu hỏi" onclick="KiemTra();"/>
+    <input type="hidden" value="" name="cauTLDung" id="CauTLDung" />
+    <input type="hidden" value="" name="soCauTL" id="soCauTL" />
+<script src="~/ckeditor_basic/ckeditor.js"></script>
+<script language="JavaScript">
+    CKEDITOR.replace('CauHoi', {
+        uiColor: '#14B8C4'
+    }).config.width = '800px';
+    CKEDITOR.config.height = '100px';
+    CKEDITOR.config.width = '700px';
+    CKEDITOR.replace('TraLoi_1', {
+        uiColor: '#14B8C4'
+    }).config.height = '50px';
+    CKEDITOR.replace('TraLoi_2', {
+        uiColor: '#14B8C4'
+    }).config.height = '50px';
+    CKEDITOR.replace('TraLoi_3', {
+        uiColor: '#14B8C4'
+    }).config.height = '50px';
+    CKEDITOR.replace('TraLoi_4', {
+        uiColor: '#14B8C4'
+    }).config.height = '50px';
+    CKEDITOR.config.skin = 'kama';
+    var cau = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    var Nhan = [1, 2, 3, 4];
+    var socau = 4;
+    var sohang = 4;
+    function ThemCauTraLoi() {
+        socau += 1;
+        $("#tblCauHoi").append('<tr id = "hang_' + socau + '">' +
+            '<td>' +
+                '<input type="button" value="Xóa" onclick="XoaCauTraLoi(' + socau + ');" style="margin-right:4px;"/>' +
+                '<input type="checkbox" id="Check_' + socau + '" name="Check" style="margin-right:4px;" value="'+socau+'"/>' +
+                '<span id="Nhan_'+socau+'"><b>' + cau[sohang] + '. </b></span>' +
+            '</td>'+
+            '<td>'+
+                '<textarea id="TraLoi_'+socau+'" name="TraLoi_' + socau + '" cols="40" rows="2"></textarea>'+
+            '</td>'+
+        '</tr>');
+        CKEDITOR.replace('TraLoi_'+socau, {
+            uiColor: '#14B8C4'
+        }).config.height = '50px';
+        Nhan.push(socau);
+        sohang += 1;
+    }
+    function XoaCauTraLoi(x) {
+        if (sohang > 2) {
+            $("#hang_" + x).remove();
+            Nhan[x - 1] = 0;
+            for (var i = 1, k=1; i <= socau; i++) {
+                if(Nhan[i-1]==i){
+                    $("#Nhan_" + i +" > b").remove();
+                    $("#Nhan_" + i).append('<b>' + cau[k-1] + '. </b>');
+                    k += 1;
+                }
+            }
+            sohang -= 1;
+        }
+    }
+    function ChonChuong() {
+        var idMH = $("#MonHoc > option:selected").attr("value");
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "getChuong?idMonHoc=" + idMH,
+            dataType: "json",
+            success: function (data) {
+                $('#ChuongDiv > div').remove();
+                if (data.length > 0) {
+                    var options = '';
+                    for (c in data) {
+                        var ch = data[c];
+                        options += "<option value='" + ch.idChuong + "'>" + ch.tenChuong + "</option>";
+                    }
+                    $("#Chuong").html(options);
+                }
+            }
+        });
+    }
+    function KiemTra() {
+        if (DoKho.value == '' || DoKhoIRT.value == '' || DoPhanBiet.value == '' || DoPhanBietIRT.value == '') {
+            alert("Bạn phải nhập các độ khó và độ phân biệt");
+            return;
+        }
+        if (tgTraLoi.value == '') {
+            alert("Bạn phải nhập thời gian để trả lời câu hỏi này");
+            return;
+        }
+        DoKho.value = DoKho.value.replace('.', ',');
+        DoPhanBiet.value = DoKho.value.replace('.', ',');
+        DoKhoIRT.value = DoKho.value.replace('.', ',');
+        DoPhanBietIRT.value = DoKho.value.replace('.', ',');
+        if((parseFloat(DoKho.value)+"") == "NaN"||
+            (parseFloat(DoKhoIRT.value)+"") == "NaN"||
+            (parseFloat(DoPhanBiet.value)+"") == "NaN"||
+            (parseFloat(DoPhanBietIRT.value) + "") == "NaN")
+        {
+            alert("Các độ khó và độ phân biệt phải là một số thực");
+            return;
+        }
+        if((parseInt(tgTraLoi.value)+"")=="NaN")
+        {
+            alert("Thời gian trả lời phải là một số nguyên và tính theo giây");
+            return;
+        }
+        if (CKEDITOR.instances["CauHoi"].getData().length < 1)
+        {
+            alert("Bạn phải nhập nội dung câu hỏi");
+            return;
+        }
+        for (var i = 1; i <= socau; i++) {
+            if (Nhan[i - 1] == i) {
+                if (CKEDITOR.instances["TraLoi_"+i].getData().length < 1) {
+                    alert("Có câu trả lời chưa nhập nội dung");
+                    return;
+                }
+            }
+        }
+        var Ktr = false;
+        var cauDung = '';
+        for (var i = 0; i < document.getElementsByName("Check").length; i++) {
+            if (document.getElementsByName("Check")[i].checked) {
+                cauDung += 1 + ',';
+                Ktr = true;                
+            } else {
+                cauDung += 0 + ',';
+            }
+        }
+        if (!Ktr) {
+            alert("Bạn chưa chọn câu trả lời đúng");
+            return;
+        } else {
+            $("#CauTLDung").attr('value', cauDung.substring(0, cauDung.length - 1));
+        }
+        $("#soCauTL").attr('value', Nhan.toString());
+        document.TCH.submit();
+    }
+</script>
+}

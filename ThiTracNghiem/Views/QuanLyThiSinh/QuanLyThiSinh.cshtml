@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ThiSinh>
+@{
+    ViewBag.Title = "Quản lý thí sinh";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using ThiTracNghiem.Models
+<script>
+    $("#qlts").css({ 'background-color': '#096484' });
+</script>
+<input type="text" id="txtTim" style="width:400px" placeholder="Nhập họ tên hoặc tên đăng nhập muốn tìm" onkeyup="TimKiemThiSinh();" />
+<br /><br />
+<div id="BangThiSinh">
+    @Html.Partial("_BangThiSinh")
+</div>
+<script>
+    function XoaThiSinh(idThiSinh) {
+        ReloadTS(idThiSinh, txtTim.value, trang.value);
+    }
+    function TimKiemThiSinh() {
+        ReloadTS("", txtTim.value, "");
+    }
+    function ChuyenTrang(Trang) {
+        ReloadTS("", txtTim.value, Trang);
+    }
+    function ReloadTS(xoa, tim, trang) {
+        if (trang == "") {
+            trang = 1;
+        }
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyThiSinh/ReLoadThiSinh?idThiSinh="+xoa+"&&trang=" + trang + "&&tim=" + tim,
+            success: function (data) {
+                $("#BangThiSinh").html(data.toString());
+            }
+        });
+    }
+    function ResetMK(idTK) {
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/QuanLyThiSinh/ResetMK?idTK=" + idTK,
+            dataType: "json",
+            success: function (data) {
+                alert("Đã reset mật khẩu cho thí sinh có id là " + idTK + " thành công")
+            }
+        });
+    }
+</script>

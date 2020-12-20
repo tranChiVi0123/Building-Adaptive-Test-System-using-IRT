@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "Quản lý đề mục";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script>
+    $("#mnqldm").css({ 'background-color': '#096484' });
+</script>
+<div class="CotDeMuc" id="Cot1">
+    @Html.Partial("_MonHoc")
+</div>
+<div class="CotDeMuc" id="Cot2">
+    @Html.Partial("_ChuongCuaMonHoc")
+</div>
+<div class="CotDeMuc2" id="Cot3">
+    @Html.Partial("_DeCuaChuong")
+</div>
+<script>
+    function ReLoadMenu() {
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/MenuTrai",
+            success: function (data) {
+                $("#MenuTrai").html(data.toString());
+            }
+        });
+    }
+    function LuuEditMonHoc(idMonHoc) {
+        if (document.getElementById("EditMonHoc_"+idMonHoc).value.length < 1) {
+            alert("Bạn phải nhập tên môn học");
+            return;
+        }
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/SuaMonHoc?idMonHoc=" + idMonHoc + "&&tenMonHoc=" + document.getElementById("EditMonHoc_" + idMonHoc).value,
+            success: function (data) {
+                $("#Cot1").html(data.toString());
+                ReLoadMenu();
+            }
+        });
+    }
+    function XoaMonHoc(idmonHoc) {
+        if (confirm("Bạn có chắc chắn muốn xóa môn học này không không?" +
+            " Tất cả các mục con trong môn học này sẽ bị xóa theo, Khi xóa dữ liệu sẽ không khôi phục lại được")) {
+            $.ajax({
+                type: "GET",
+                url: "/QuanLyDeThi/XoaMonHoc?idMonHoc=" + idmonHoc,
+                success: function (data) {
+                    $("#Cot1").html(data.toString());
+                    ReLoadMenu();
+                }
+            });
+        }
+    }
+    function XemChuong(idMH) {
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/XemChuong?idMonHoc=" + idMH,
+            success: function (data) {
+                $("#Cot2").html(data.toString());
+                if (document.getElementsByName("IDChuong").length > 0) {
+                    XemDeThi(document.getElementsByName("IDChuong")[0].value);
+                }
+            }
+        });
+    }
+    function LuuEditChuong(idChuong) {
+        if (document.getElementById("EditChuong_" + idChuong).value.length < 1) {
+            alert("Bạn phải nhập tên chương");
+            return;
+        }
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/SuaChuong?idChuong=" + idChuong + "&&tenChuong=" + document.getElementById("EditChuong_" + idChuong).value,
+            success: function (data) {
+                $("#Cot2").html(data.toString());
+                ReLoadMenu();
+            }
+        });
+    }
+    function XoaChuong(idchuong) {
+        if (confirm("Bạn có chắc chắn muốn xóa chương này không không?" +
+            " Tất cả các mục con trong chương này sẽ bị xóa theo, Khi xóa dữ liệu sẽ không khôi phục lại được")) {
+            $.ajax({
+                type: "GET",
+                url: "/QuanLyDeThi/XoaChuong?idChuong=" + idchuong,
+                success: function (data) {
+                    $("#Cot2").html(data.toString());
+                    ReLoadMenu();
+                }
+            });
+        }
+    }
+    function XemDeThi(idC) {
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/XemDeThi?idChuong=" + idC,
+            success: function (data) {
+                $("#Cot3").html(data.toString());
+            }
+        });
+    }
+    function LuuEditDeThi(idDeThi) {
+        if (document.getElementById("EditDeThi_" + idDeThi).value.length < 1) {
+            alert("Bạn phải nhập tên đề thi");
+            return;
+        }
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/SuaTenDeThi?idDeThi=" + idDeThi + "&&tenDeThi=" + document.getElementById("EditDeThi_" + idDeThi).value,
+            success: function (data) {
+                $("#Cot3").html(data.toString());
+                ReLoadMenu();
+            }
+        });
+    }
+</script>
+

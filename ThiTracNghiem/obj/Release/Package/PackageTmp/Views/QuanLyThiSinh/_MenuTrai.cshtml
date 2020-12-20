@@ -1,0 +1,77 @@
+﻿@using ThiTracNghiem.Models
+@{
+    DataContext datacontext = new DataContext();
+    List<MonHoc> MH = datacontext.MonHocs.ToList();
+    List<Chuong> C = new List<Chuong>();
+    List<DeThi> DT = new List<DeThi>();
+}
+@for (int i = 0; i < MH.Count; i++)
+{
+    <a href="/QuanLyDeThi/CauHoiCuaMonHoc?idMonHoc=@MH[i].idMonHoc" style="text-decoration:none">
+        <div id="Monhoc_@MH[i].idMonHoc" style="width:100%;padding-left:5px;text-transform:uppercase" class="MenuDeThi">
+            <span class="glyphicon glyphicon-education" aria-hidden="true" style="margin-right:5px;"></span>@MH[i].tenMonHoc
+        </div>
+    </a>
+    C = MH[i].CacChuong.Where(x => x.idMonHoc == MH[i].idMonHoc).ToList();
+    for (int j = 0; j < C.Count; j++)
+    {
+        <a href="/QuanLyDeThi/CauHoiCuaChuong?idChuong=@C[j].idChuong" style="text-decoration:none">
+            <div id="Chuong_@C[j].idChuong" style="width:100%;padding-left:25px;" class="MenuDeThi">
+                <span class="glyphicon glyphicon-book" aria-hidden="true" style="margin-right:5px;"></span>@C[j].tenChuong
+            </div>
+        </a>
+        DT = C[j].CacDeThi.Where(x => x.idChuong == C[j].idChuong).ToList();
+        for (int k = 0; k < DT.Count; k++)
+        {
+            <a href="/QuanLyDeThi/CauHoiCuaDe?idDe=@DT[k].idDeThi" id="LinkDe_@DT[k].idDeThi" style="text-decoration:none">
+                <div id="De_@DT[k].idDeThi" style="width:100%;padding-left:45px;" class="MenuDeThi">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true" style="margin-right:5px;"></span>@DT[k].tenDeThi
+                </div>
+            </a>
+        }
+        <a href="#" id="ThemDe" style="text-decoration:none" onclick="TaoDe('@MH[i].idMonHoc','@C[j].idChuong');">
+            <div id="TaoDe" style="width:100%;padding-left:45px;" class="MenuDeThi">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right:5px;"></span>Tạo đề mới
+            </div>
+        </a>
+    }
+    <a href="#" id="ThemChuong" style="text-decoration:none" onclick="ThemChuong('@MH[i].idMonHoc');">
+        <div id="ThemChuong" style="width:100%;padding-left:25px;" class="MenuDeThi">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right:5px;"></span>Thêm chương mới
+        </div>
+    </a>
+}
+<a href="#" id="ThemMonHoc" style="text-decoration:none" onclick="ThemMonHoc();">
+    <div style="width:100%;padding-left:5px;" class="MenuDeThi">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right:5px;"></span><span>THÊM MÔN HỌC</span>
+    </div>
+</a>
+<script>
+    function ThemMonHoc() {
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/ViewThemMH",
+            success: function (data) {
+                $("#MenuTrai").html(data.toString());
+            }
+        });
+    }
+    function ThemChuong(idMH) {
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/ViewThemChuong?idMonHoc="+idMH,
+            success: function (data) {
+                $("#MenuTrai").html(data.toString());
+            }
+        });
+    }
+    function TaoDe(idmh,idC) {
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/ViewTaoDe?idChuong="+idC,
+            success: function (data) {
+                $("#MenuTrai").html(data.toString());
+            }
+        });
+    }
+</script>

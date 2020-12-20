@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body{
+        background-color:silver;
+    }
+</style>
+<center>
+    <div style="width:998px; background-color:white;min-height:600px;">
+        <div style="width:998px; background-color:#52accc;position:fixed;z-index:10;display:block">
+            <div style="width:70%;float:left">
+                <ul class="nav nav-pills">
+                    <li role="presentation" id="trangchu">
+                        <a href="/TrangThiSinh/TrangChu" style="color:white;">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            <span>Trắc nghiệm online</span>
+                        </a>
+                    </li>                    
+                    <li role="presentation" id="lslb">
+                        <a href="/TrangThiSinh/LichSuLamBai" style="color:white;">
+                            <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>
+                            <span>Lịch sử làm bài</span>
+                        </a>
+                    </li>
+                    <li role="presentation" id="bxh">
+                        <a href="/TrangThiSinh/BangXepHang" style="color:white;">
+                            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                            <span>Bảng xếp hạng</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div style="width:30%;float:left">
+                <ul class="nav nav-pills" style="float:right">
+                    @if (Session["tenDangNhap"] == null)
+                    {
+                        <li role="presentation" id="dk">
+                            <a href="/TaiKhoan/DangKy" style="color:white;">
+                                <span>Đăng ký</span>
+                            </a>
+                        </li>
+                        <li role="presentation" id="dn">
+                            <a href="/TaiKhoan/UserDangNhap" style="color:white;">
+                                <span>Đăng nhập</span>
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li role="presentation" id="cn">
+                            <a href="/TaiKhoan/CaNhan" style="color:white;">
+                                <span>Hello @Session["tenDangNhap"]</span>
+                            </a>
+                        </li>
+                        <li role="presentation" id="dx">
+                            <a href="/TaiKhoan/DangXuat" style="color:white;">
+                                <span>Đăng xuất</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div style="background-color:white;padding:10px;padding-top:50px;">
+            @RenderBody()
+        </div>
+    </div>
+</center>

@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Bảng xếp hạng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@using ThiTracNghiem.Models
+<script>
+    $("#bxh").css({ 'background-color': '#096484' });
+</script>
+<div style="text-align:left">
+    <table border="1" cellpadding="4" cellspacing="6" class="BangHienThi" style="margin-top:30px;width:100%">
+        <tr class="TieuDe">
+            <td class="TieuDeBang" colspan="7">BẢNG VÀNG</td>
+        </tr>
+        <tr class="TieuDe">
+            <td class="TieuDeCot">Họ và tên</td>
+            <td class="TieuDeCot">Giới tính</td>
+            <td class="TieuDeCot">Ngày sinh</td>
+            <td class="TieuDeCot">Tổng số bài làm</td>
+            <td class="TieuDeCot">Tổng số điểm</td>
+            <td class="TieuDeCot">Điểm trung bình</td>
+            <td class="TieuDeCot">Xếp loại</td>
+        </tr>
+        @foreach (ThiSinh TS in ViewBag.TaiKhoan)
+        {
+            <tr>
+                <td style="padding:2px;">@TS.hoTen</td>
+                <td style="padding:2px;">@TS.gioiTinh</td>
+                <td style="padding:2px;">@String.Format("{0:dd/MM/yyyy}", TS.ngaySinh)</td>
+                <td style="padding:2px;">@TS.soBaiLam</td>
+                <td style="padding:2px;">@String.Format("{0:#.00}", TS.tongSoDiem)</td>
+                <td style="padding:2px;">@String.Format("{0:#.00}", TS.DTB)</td>
+                <td style="padding:2px;">@TS.xepLoai</td>
+            </tr>
+        }
+    </table>
+</div>

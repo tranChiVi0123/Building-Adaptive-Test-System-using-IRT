@@ -1,0 +1,69 @@
+﻿<input type="text" id="tenDe" placeholder="Nhập tên đề" style="margin:5px;width:90%" />
+<input type="text" id="thoiGianLB" placeholder="Thời gian làm bài" style="margin:5px;width:70%" onkeypress="return ValidateKeypress(/\d/, event);" />Phút
+<input type="checkbox" id="random" style="margin:5px;" onchange="CheckRandom();" /><span style="color:white">Tự động thêm câu hỏi</span>
+<input type="text" id="soCau" value="0" placeholder="Số lượng câu hỏi" style="margin:5px;width:90%" hidden onkeypress="return ValidateKeypress(/\d/, event);" />
+<br />
+<span style="margin:5px;color:white" id="ToiDa" hidden>Tối đa @ViewBag.soCauToiDa câu</span>
+<br />
+<input type="button" value="Thêm" onclick="ThemDe()" style="margin-left:5px;" />
+<input type="button" value="Thoát" onclick="ThoatThemDe()" />
+<script>
+    function ThemDe() {
+        if (tenDe.value.length<1) {
+            alert("Bạn phải nhập tên đề");
+            return;
+        }
+        if (soCau.value.length<1) {
+            soCau.value = 0;
+        }
+        if (thoiGianLB.value.length < 1) {
+            thoiGianLB.value = 0;
+        }
+        if (parseInt(soCau.value) > parseInt('@ViewBag.soCauToiDa')) {
+            alert("Số lượng câu hỏi lớn hơn số lượng câu hỏi hiện có");
+            return;
+        }
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/TaoDeThi?idChuong=" +
+                '@ViewBag.idChuong' +"&&tenDe=" + tenDe.value+"&&soCau="+soCau.value +"&&thoiGian=" +thoiGianLB.value,
+            success: function (data) {
+                $("#MenuTrai").html(data.toString());
+            }
+        });
+    }
+    function ThoatThemDe() {
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/MenuTrai",
+            success: function (data) {
+                $("#MenuTrai").html(data.toString());
+            }
+        });
+    }
+    function CheckRandom() {
+        if (random.checked) {
+            $("#soCau").attr('hidden', false);
+            $("#ToiDa").attr('hidden', false);
+        }
+        else {
+            soCau.value = 0;
+            $("#soCau").attr('hidden', true);
+            $("#ToiDa").attr('hidden', true);
+        }
+    }
+    function ValidateKeypress(numcheck, e) {
+        var keynum, keychar, numcheck;
+        if (window.event) {
+            keynum = e.keyCode;
+        }
+        else if (e.which) {
+            keynum = e.which;
+        }
+        if (keynum == 8 || keynum == 127 || keynum == null || keynum == 9 || keynum == 0 || keynum == 13) return true;
+        keychar = String.fromCharCode(keynum);
+        var result = numcheck.test(keychar);
+        return result;
+    }
+</script>
+

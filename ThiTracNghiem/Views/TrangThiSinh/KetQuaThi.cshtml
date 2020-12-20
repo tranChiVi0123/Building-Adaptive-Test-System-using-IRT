@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Kết quả thi";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    List<bool> traLoi = new List<bool>();
+    if (ViewBag.traLoi != null)
+    {
+        traLoi = ViewBag.traLoi;
+    }
+    List<float> listTrinhDo = new List<float>();
+    if (ViewBag.listTrinhDo != null)
+    {
+        listTrinhDo = ViewBag.listTrinhDo;
+    }
+}
+<script>
+    $("#trangchu").css({ 'background-color': '#096484' });
+</script>
+<table border="1" cellpadding="4" cellspacing="6" class="BangHienThi" style="margin-top:30px;width:100%">
+    <tr class="TieuDe">
+        <td class="TieuDeBang" colspan="7">KẾT QUẢ TỔNG HỢP</td>
+    </tr>
+    <tr class="TieuDe">
+        <td class="TieuDeCot">User</td>
+        <td class="TieuDeCot">Thời gian nộp bài</td>
+        <td class="TieuDeCot">Tổng số câu hỏi</td>
+        <td class="TieuDeCot">Số câu làm đúng</td>
+        <td class="TieuDeCot">Điểm</td>
+        <td class="TieuDeCot">Trình độ hiện tại</td>
+    </tr>
+    <tr>
+        <td style="padding:2px;">@Session["tenDangNhap"]</td>
+        <td style="padding:2px;">@String.Format("{0:dd/MM/yyyy HH:mm}",DateTime.Now)</td>
+        <td style="padding:2px;">@ViewBag.tongSoCauHoi</td>
+        <td style="padding:2px;">@ViewBag.chonDung</td>
+        <td style="padding:2px;">@String.Format("{0:#.00}", ViewBag.Diem)</td>
+        <td style="padding:2px;">@ViewBag.trinhDo</td>
+    </tr>
+</table>
+<br />
+@if (traLoi.Count > 0)
+{
+    <table border="1" cellpadding="4" cellspacing="6" class="BangHienThi" style="margin-top:30px;width:100%">
+        <tr class="TieuDe">
+            <td class="TieuDeBang" colspan="9">KẾT QUẢ CHI TIẾT</td>
+        </tr>
+        <tr class="TieuDe">
+            <td class="TieuDeCot">Câu hỏi</td>
+            <td class="TieuDeCot">u(i)</td>
+            <td class="TieuDeCot">Năng lực</td>
+            @if (traLoi.Count > 0)
+            {
+                <td class="TieuDeCot">Câu hỏi</td>
+                <td class="TieuDeCot">u(i)</td>
+                <td class="TieuDeCot">Năng lực</td>
+            }
+            @if (traLoi.Count > 1)
+            {
+                <td class="TieuDeCot">Câu hỏi</td>
+                <td class="TieuDeCot">u(i)</td>
+                <td class="TieuDeCot">Năng lực</td>
+            }
+        </tr>
+        @for (int i = -1; i < traLoi.Count; i++)
+        {
+            <tr>
+                @{
+            if (i == -1)
+            {
+                <td style="padding:2px;"></td>
+                    <td style="padding:2px;"></td>
+                    <td style="padding:2px;">@listTrinhDo[i + 1]</td>
+            }
+            else
+            {
+                <td style="padding:2px;">@(i + 1)</td>
+                    <td style="padding:2px;">@traLoi[i]</td>
+                    <td style="padding:2px;">@listTrinhDo[i + 1]</td>
+            }
+            i++;
+            if (i < traLoi.Count)
+            {
+                <td style="padding:2px;">@(i + 1)</td>
+                    <td style="padding:2px;">@traLoi[i]</td>
+                    <td style="padding:2px;">@listTrinhDo[i + 1]</td>
+            }
+            else
+            {
+                <td style="padding:2px;"></td>
+                    <td style="padding:2px;"></td>
+                    <td style="padding:2px;"></td>
+            }
+            i++;
+            if (i < traLoi.Count)
+            {
+                <td style="padding:2px;">@(i + 1)</td>
+                    <td style="padding:2px;">@traLoi[i]</td>
+                    <td style="padding:2px;">@listTrinhDo[i + 1]</td>
+            }
+            else
+            {
+                <td style="padding:2px;"></td>
+                    <td style="padding:2px;"></td>
+                    <td style="padding:2px;"></td>
+            }
+                }
+            </tr>
+        }
+    </table>
+}

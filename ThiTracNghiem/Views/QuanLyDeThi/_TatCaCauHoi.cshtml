@@ -1,0 +1,27 @@
+﻿@model IEnumerable<CauHoi>
+@using ThiTracNghiem.Models
+<h4 style="font-weight:bold;text-transform:uppercase;">Tất cả câu hỏi</h4>
+<input type="text" id="txtTim" style="width:300px" placeholder="Nhập nội dung câu hỏi muốn tìm" onkeyup="TimKiemCauHoi();" />
+<div id="CauHoiSuaDe">
+    @Html.Partial("_CauHoiSuaDe", Model);
+</div>
+<script>
+    function TimKiemCauHoi() {
+        Reload(txtTim.value, "");
+    }
+    function ChuyenTrang(Trang) {
+        Reload(txtTim.value, Trang);
+    }
+    function Reload(tim, trang) {
+        if (trang == "") {
+            trang = 1;
+        }
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/ReLoadTatCaCauHoi?trang=" + trang + "&&tim=" + tim + "&&idMonHoc=" + '@ViewBag.idMonHoc',
+            success: function (data) {
+                $("#CauHoiSuaDe").html(data.toString());
+            }
+        });
+    }
+</script>

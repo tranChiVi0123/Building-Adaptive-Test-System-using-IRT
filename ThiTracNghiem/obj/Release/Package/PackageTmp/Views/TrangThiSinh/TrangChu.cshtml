@@ -1,0 +1,158 @@
+﻿@{
+    ViewBag.Title = "Trắc nghiệm online";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    List<Chuong> C = new List<Chuong>();
+    List<DeThi> DT = new List<DeThi>();
+}
+@using ThiTracNghiem.Models;
+<script>
+    $("#trangchu").css({ 'background-color': '#096484' });
+</script>
+@using (Html.BeginForm("ThiDeNgauNhien", "TrangThiSinh", FormMethod.Post, new { name = "DeNgauNhien" }))
+{
+    <div style="text-align:left; border:solid 1px blue;border-radius:5px;padding:10px;">
+        <span style="font-weight:bold;font-size:16px;">THI ĐỀ NGẪU NHIÊN</span><br />
+        <input type="radio" value="1" name="cachLam" checked/>Chọn câu hỏi ngẫu nhiên cho đề thi<br />
+        <input type="radio" value="2" name="cachLam" />Chọn câu hỏi theo trình độ của tôi<br />
+        <span>Môn học: </span>
+        <select id="MonHoc" name="MonHoc" onchange="ChonChuong();">
+            @foreach (MonHoc MH in ViewBag.MonHoc)
+            {
+                <option value="@MH.idMonHoc">@MH.tenMonHoc</option>
+            }
+            <option value="0">Tất cả</option>
+        </select>
+        <span>Chương: </span>
+        <select id="Chuong" name="Chuong" onchange="CauToiDa();">
+            @foreach (Chuong ch in ViewBag.Chuong)
+            {
+                <option value="@ch.idChuong">@ch.tenChuong</option>
+            }
+            <option value="0">Tất cả</option>
+        </select>
+        <span>Nhập số câu hỏi (tối đa <span id="cauHoiTD"></span> câu): </span>
+        <input type="text" style="width:40px" name="SoCauHoi" value="0" id="SoCauHoi" />
+@if (Session["tenDangNhap"] == null)
+{<a href="/TaiKhoan/UserDangNhap">
+        <input type="button" value="Bắt đầu làm bài"/>
+    </a>
+}
+else
+{
+    <input type="button" id="LamBaiNgauNhien" value="Bắt đầu làm bài" onclick="KiemTraDeNgauNhien();" />
+}
+    </div>
+}
+<hr />
+@foreach (MonHoc MH in ViewBag.MonHoc)
+{
+    <div class="CauHoiTrangChu">
+        <div style="background-color:#428bca; width:99%;margin:1px; margin-left:1%;border-radius:3px;padding:5px;color:white;font-weight:bold;font-size:17px;text-transform:uppercase">@MH.tenMonHoc</div>
+        @{
+    C = MH.CacChuong.Where(x => x.idMonHoc == MH.idMonHoc).ToList();
+        }
+        @foreach (Chuong ch in C)
+        {
+            <div class="ChuongTrangChu" style="background-color:#f0ad4e; width:97%;margin:1px; margin-left:3%;border-radius:3px;padding:5px;color:white;font-weight:bold;font-size:16px;">@ch.tenChuong</div>
+            DT = ch.CacDeThi.Where(x => x.idChuong == ch.idChuong).ToList();
+            <div style="padding-left:55px;">
+                <table>
+                    @for (int i = 0; i < DT.Count; i += 4)
+                    {
+                        <tr>
+                            @for (int j = 0; j < 4 && (i + j) < DT.Count; j++)
+                            {
+                                <td style="padding:4px;width:200px;height:100px;">
+                                    <div style="background-color:#5cb85c; height:auto;border-radius:3px;padding:5px;">
+                                        <center>
+                                            <span style="font-weight:bold;color:red;font-size:15px;">@DT[i + j].tenDeThi</span><br />
+                                            Số lượng câu hỏi: @DT[i + j].CacNoiDungDeThi.Where(x => x.idDeThi == DT[i + j].idDeThi).Count() câu
+                                            <br />
+                                            Thời gian làm bài: @DT[i + j].thoiGianLamBai phút
+                                            @if (DT[i + j].CacNoiDungDeThi.Where(x => x.idDeThi == DT[i + j].idDeThi).Count() > 0
+                                                && DT[i + j].thoiGianLamBai > 0)
+                                            {
+                                                if (Session["tenDangNhap"] == null)
+                                                {
+                                                    <a href="/TaiKhoan/UserDangNhap"><input type="button" value="Làm bài" /></a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/TrangThiSinh/LamBaiDeCoSan?idDeThi=@DT[i+j].idDeThi"><input type="button" value="Làm bài" /></a>
+                                                }
+                                            }
+                                        </center>
+                                    </div>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+    </div>
+}
+<script>
+    CauToiDa();
+    var soCauHoiToiDa = '0';
+    function ChonChuong() {
+        var idMH = $("#MonHoc > option:selected").attr("value");
+        if (idMH != '0') {
+            $("#Chuong").attr('disabled', false);
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "/TrangThiSinh/getChuong?idMonHoc=" + idMH,
+                dataType: "json",
+                success: function (data) {
+                    $('#ChuongDiv > div').remove();
+                    if (data.length > 0) {
+                        var options = '';
+                        for (c in data) {
+                            var ch = data[c];
+                            options += "<option value='" + ch.idChuong + "'>" + ch.tenChuong + "</option>";
+                        }
+                        options += '<option value="0">Tất cả</option>';
+                        $("#Chuong").html(options);
+                    }
+                    CauToiDa();
+                }
+            });
+        } else {            
+            $('#ChuongDiv > div').remove();
+            $("#Chuong").html('<option value="0">Tất cả</option>');
+            $("#Chuong").attr('disabled', true);
+            CauToiDa();
+        }
+    }
+    function CauToiDa() {
+        var idMonHoc = $("#MonHoc > option:selected").attr("value");
+        var idChuong = $("#Chuong > option:selected").attr("value");
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/TrangThiSinh/getCauHoiToiDa?idMonHoc=" + idMonHoc + "&&idChuong=" + idChuong,
+            dataType: "json",
+            success: function (data) {
+                $("#cauHoiTD").html(data.toString());
+                if (data == "0") {
+                    LamBaiNgauNhien.disabled = true;
+                } else {
+                    LamBaiNgauNhien.disabled = false;
+                }
+                soCauHoiToiDa = data.toString();
+            }
+        });
+    }
+    function KiemTraDeNgauNhien() {
+        if (parseInt(SoCauHoi.value) > parseInt(soCauHoiToiDa)) {
+            alert("Số câu hỏi yêu cầu lớn hơn số câu hỏi hiện có");
+            return;
+        }
+        if (parseInt(SoCauHoi.value) < 1) {
+            alert("Phải có ít nhất một câu hỏi trong đề");
+            return;
+        }
+        document.DeNgauNhien.submit();
+    }
+</script>

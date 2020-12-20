@@ -1,0 +1,90 @@
+﻿@using ThiTracNghiem.Models
+@{
+    ThiTheoTrinhDo thiTheoTD = (ThiTheoTrinhDo)Session["ThiTheoTrinhDo"];
+    CauHoi CH = thiTheoTD.CauHoiDuocChon;
+}
+<input type="hidden" name="idCauHoi" id="idCauHoi" value="@CH.idCauHoi"/>
+<div style="margin-top:10px;height:30px;">
+    <div style="float:left;margin-left:30px;">
+        <span style="font-size:15px;"><b>Đang làm câu @thiTheoTD.soCauDaLam/@thiTheoTD.SoCauHoiCan</b></span>
+    </div>
+    <div style="float:right; margin-right:30px;border: solid 2px red;background-color:#f8acac; padding-left:10px; padding-right:10px; color:red;width:auto">
+        <span style="font-weight:bold;font-size:20px;" id="s"></span>
+    </div>
+</div>
+<hr />
+<div id="CauHoi_@CH.idCauHoi" style="margin-top:10px">
+    <div>
+        <table>
+            <tr>
+                <td style="vertical-align:top">
+                    <span style="font-weight:bold;color:blue;margin-right:5px;">Câu @thiTheoTD.soCauDaLam: </span>
+                </td>
+                <td>
+                    @Html.Raw(CH.noiDung)
+                </td>
+            </tr>
+        </table>
+    </div>
+    @{
+        List<DapAn> DA = CH.CacDapAn.Where(x => x.idCauHoi == CH.idCauHoi).ToList();
+        int soDapAnDung = DA.Where(x => x.isDapAnDung == true).Count();
+        char cau = 'A';
+    }
+    <div style="margin-left:30px;">
+        @for (int j = 0; j < DA.Count; j++)
+        {
+            if (soDapAnDung == 1)
+            {
+                <table>
+                    <tr>
+                        <td style="vertical-align:top"><input type="radio" style="margin-right:10px;" id="dapanduocchon_@CH.idCauHoi@DA[j].idDapAn" name="DapAnCuaCauHoi" value="@DA[j].idDapAn" /></td>
+                        <td style="vertical-align:top">
+                            <p style="margin-right:5px; font-weight:bold">
+                                @cau.
+                            </p>
+                        </td>
+                        <td>
+                            @Html.Raw(DA[j].noiDung)
+                        </td>
+                    </tr>
+                </table>
+            }
+            else
+            {
+                <table>
+                    <tr>
+                        <td style="vertical-align:top"><input type="checkbox" style="margin-right:10px;" id="DapAnDuocChon_@CH.idCauHoi@DA[j].idDapAn" name="DapAnCuaCauHoi" value="@DA[j].idDapAn" /></td>
+                        <td style="vertical-align:top">
+                            <p style="margin-right:5px; font-weight:bold">
+                                @cau.
+                            </p>
+                        </td>
+                        <td>
+                            @Html.Raw(DA[j].noiDung)
+                        </td>
+                    </tr>
+                </table>
+            }
+            cau++;
+        }
+    </div>
+</div>
+<hr />
+<script>
+    var s = parseInt('@thiTheoTD.TGTraLoi');
+    var timeout;
+    start();
+    function start() {
+        if (s === -1) {
+            CauTiepTheo();
+            return;
+        }
+        document.getElementById('s').innerText = "Còn " + s.toString() + " giây";
+        timeout = setTimeout(function () {
+            s--;
+            @(thiTheoTD.TGTraLoi--);
+            start();
+        }, 1000);
+    }
+</script>

@@ -1,0 +1,29 @@
+﻿<input type="text" id="tenChuongMoi" placeholder="Nhập tên chương" style="margin:5px;width:90%" />
+<br />
+<input type="button" value="Thêm" onclick="ThemChuong()" style="margin-left:5px;" />
+<input type="button" value="Thoát" onclick="ThoatThemChuong()" />
+<script>
+    function ThemChuong() {
+        if (tenChuongMoi.value.length<1) {
+            alert("Bạn phải nhập tên chương");
+            return;
+        }
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/ThemChuong?idMonHoc="+'@ViewBag.idMonHoc'+"&&tenChuong="+tenChuongMoi.value,
+            success: function (data) {
+                $("#MenuTrai").html(data.toString());
+            }
+        });
+    }
+    function ThoatThemChuong() {
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/MenuTrai",
+            success: function (data) {
+                $("#MenuTrai").html(data.toString());
+            }
+        });
+    }
+</script>
+

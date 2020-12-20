@@ -1,0 +1,176 @@
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\ThiTracNghiem.dll.config
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\ThiTracNghiem.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\ThiTracNghiem.pdb
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\Antlr3.Runtime.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.SqlServer.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\Newtonsoft.Json.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.Formatting.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.WebRequest.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.WebHost.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Mvc.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Optimization.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Providers.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Razor.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Razor.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\WebGrease.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.xml
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.SqlServer.xml
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\Newtonsoft.Json.xml
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.xml
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.Formatting.xml
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.WebRequest.xml
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.xml
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.WebHost.xml
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Mvc.xml
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Razor.xml
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.xml
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Razor.xml
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.csprojResolveAssemblyReference.cache
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.dll
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.pdb
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.Migrations.InitialCreate.resources
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.csproj.GenerateResource.Cache
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.Migrations.M1.resources
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.Migrations.M2.resources
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.Migrations.M3.resources
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.Migrations.M4.resources
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.Migrations.M5.resources
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.Migrations.M6.resources
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.Migrations.M7.resources
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.Migrations.M8.resources
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.Migrations.M9.resources
+C:\Users\Pham Ngoc Quy\SkyDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.Migrations.M10.resources
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\ThiTracNghiem.dll.config
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\ThiTracNghiem.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\ThiTracNghiem.pdb
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\Antlr3.Runtime.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.SqlServer.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\Newtonsoft.Json.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.Formatting.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.WebHost.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Mvc.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Optimization.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Providers.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Razor.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Deployment.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Razor.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\WebGrease.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.xml
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.SqlServer.xml
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\Newtonsoft.Json.xml
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.xml
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.Formatting.xml
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.xml
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.WebHost.xml
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Mvc.xml
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Razor.xml
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.xml
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Deployment.xml
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Razor.xml
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.dll
+C:\Users\NgocQuy\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.pdb
+C:\Users\NGOCQUY\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.csprojAssemblyReference.cache
+C:\Users\NGOCQUY\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.csproj.CoreCompileInputs.cache
+C:\Users\NGOCQUY\OneDrive\Documents\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.csproj.CopyComplete
+D:\ThiTracNghiem\ThiTracNghiem\bin\ThiTracNghiem.dll.config
+D:\ThiTracNghiem\ThiTracNghiem\bin\ThiTracNghiem.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\ThiTracNghiem.pdb
+D:\ThiTracNghiem\ThiTracNghiem\bin\Antlr3.Runtime.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.SqlServer.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\Microsoft.Web.Infrastructure.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\Newtonsoft.Json.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.Formatting.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.WebHost.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Mvc.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Optimization.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Providers.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Razor.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Deployment.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Razor.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\WebGrease.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.dll
+D:\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.xml
+D:\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.SqlServer.xml
+D:\ThiTracNghiem\ThiTracNghiem\bin\Newtonsoft.Json.xml
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.Formatting.xml
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.xml
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.WebHost.xml
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Mvc.xml
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Razor.xml
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.xml
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Deployment.xml
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Razor.xml
+D:\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.xml
+D:\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.csprojAssemblyReference.cache
+D:\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.csproj.CopyComplete
+D:\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.dll
+D:\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.pdb
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.csproj.CoreCompileInputs.cache
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.csprojAssemblyReference.cache
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\ThiTracNghiem.dll.config
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\ThiTracNghiem.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\ThiTracNghiem.pdb
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\Antlr3.Runtime.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.SqlServer.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\Newtonsoft.Json.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.IO.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.Extensions.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.Formatting.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.Primitives.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.WebRequest.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Runtime.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Threading.Tasks.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.WebHost.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Mvc.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Optimization.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Providers.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Razor.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Deployment.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Razor.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\WebGrease.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\EntityFramework.SqlServer.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.IO.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.Extensions.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.Primitives.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.WebRequest.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Runtime.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Threading.Tasks.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\Newtonsoft.Json.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Net.Http.Formatting.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Http.WebHost.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Mvc.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.Razor.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Deployment.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\bin\System.Web.WebPages.Razor.xml
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.csproj.App.config
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.csproj.CopyComplete
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.dll
+C:\Users\DELL\OneDrive\Máy tính\ThiTracNghiem\ThiTracNghiem\ThiTracNghiem\obj\Debug\ThiTracNghiem.pdb

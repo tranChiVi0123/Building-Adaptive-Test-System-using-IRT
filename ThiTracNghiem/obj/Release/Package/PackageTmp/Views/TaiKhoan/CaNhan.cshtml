@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "Thông tin cá nhân";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    ThiSinh TS = ViewBag.ThiSinh;
+}
+@using ThiTracNghiem.Models
+<script>
+    $("#cn").css({ 'background-color': '#096484' });
+</script>
+<div style="text-align:left">
+    <div style="width:520px;text-align:center">
+        <h3>THÔNG TIN CÁ NHÂN</h3>
+    </div>
+</div>
+<div style="text-align:right;float:left;width:200px;">
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;">Tên đăng nhập:<span style="color:red">*</span></p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;">Họ và tên:<span style="color:red">*</span></p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;">Ngày sinh:</p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;">Email:<span style="color:red">*</span></p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;">Tổng số bài làm:</p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;">Tổng số điểm:</p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;">Điểm trung bình:</p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;">Xếp loại:</p>
+</div>
+<div style="float:left;width:320px;text-align:left;margin-left:10px;">
+    @using (Html.BeginForm("LuuThayDoiTaiKhoan", "TaiKhoan", FormMethod.Post, new { name = "TK" }))
+    {
+        string select = "";
+        <input type="text" disabled id="txtTenDN" name="txtTenDN" style="margin:2px;padding:2px;height:30px; width:300px;border-radius:3px;font-size:15px;border:solid 1px black;" value="@TS.tenDangNhap" /><br />
+        <input type="text" id="txtHoTen" name="txtHoTen" style="margin:2px;padding:2px;height:30px; width:300px;border-radius:3px;font-size:15px;border:solid 1px black;" value="@TS.hoTen" onkeydown="loiHoTen.innerText = '';" /><br />
+        <input type="date" id="txtNgaySinh" name="txtNgaySinh" style="margin:2px;padding:2px;height:30px; width:150px;border-radius:3px;font-size:15px;border:solid 1px black;" value="@String.Format("{0:yyyy-MM-dd}",TS.ngaySinh)" onchange="loiNgaySinh.innerText = '';" />
+        <span>Giới tính:</span>
+        <select id="gioiTinh" name="gioiTinh" style="margin:2px;padding:2px;height:30px; width:80px;border-radius:3px;font-size:15px;border:solid 1px black;">
+            @if (TS.gioiTinh == "Nam")
+            {
+                select = "selected";
+            }
+            <option value="Nam" @select>
+                Nam
+            </option>
+            @{
+            select = "";
+            if (TS.gioiTinh == "Nữ")
+            {
+                select = "selected";
+            }
+            }
+            <option value="Nữ" @select>
+                Nữ
+            </option>
+        </select><br />
+        <input id="email" disabled name="email" style="margin:2px;padding:2px;height:30px; width:300px;border-radius:3px;font-size:15px;border:solid 1px black;" type="email" value="@TS.email" />
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;"><b>@TS.soBaiLam bài</b></p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;"><b>@String.Format("{0:#.00}",TS.tongSoDiem) điểm</b></p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;"><b>@String.Format("{0:#.00}", TS.DTB) điểm</b></p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;"><b>@TS.xepLoai</b></p>
+        <input type="button" value="Lưu thông tin" onclick="KiemTraSubmit();" />
+        <input type="reset" value="Reset" />
+    }
+</div>
+<div style="text-align:left;float:left;width:400px;color:red">
+    <p id="loiTenDN" style="padding-top:8px;height:34px;margin-bottom:0px;"></p>
+    <p id="loiHoTen" style="padding-top:8px;height:34px;margin-bottom:0px;"></p>
+    <p id="loiNgaySinh" style="padding-top:8px;height:34px;margin-bottom:0px;"></p>
+    <p id="loiEmail" style="padding-top:8px;height:34px;margin-bottom:0px;"></p>
+</div><br />
+@using (Html.BeginForm("DoiMatKhau", "TaiKhoan", FormMethod.Post, new { name = "DMK" }))
+{
+    string TB = "";
+    if (ViewBag.TB != null) { TB = ViewBag.TB; }
+    <div style="border:solid 1px blue;margin-top:350px;padding:10px;">
+        <script language="JavaScript">
+            function SetTB() {
+                txtThongBao.value = "";
+            }
+        </script>
+        <span style="font-size:15px;font-weight:bold;float:left;">Đổi mật khẩu</span><br />
+        <input type="text" id="txtThongBao" readonly="readonly" style="width:940px; color:red;border:none" value="@TB" />
+        <span></span>
+        <span>Mật khẩu cũ:</span>
+        <input type="password" name="MatKhauCu" style="width:150px;" onkeypress="SetTB();" />
+        <span>Mật khẩu mới:</span>
+        <input type="password" name="MatKhauMoi" style="width:150px;" onkeypress="SetTB();" />
+        <span>Xác nhận mật khẩu</span>
+        <input type="password" name="XacNhanMK" style="width:150px;" onkeypress="SetTB();" />
+        <input type="button" value="Lưu mật khẩu" style="float:none;" onclick="document.DMK.submit();" />
+    </div>
+}
+<script>
+    function KiemTraSubmit() {
+        var Loi = false;
+        if (txtHoTen.value.length < 1) {
+            loiHoTen.innerText = "Bạn phải nhập họ tên";
+            Loi = true;
+        }
+        if (txtNgaySinh.value == "") {
+            loiNgaySinh.innerText = "Ngày sinh sai";
+            Loi = true;
+        }
+        if (!Loi) {
+            document.TK.submit();
+        }
+    }
+</script>

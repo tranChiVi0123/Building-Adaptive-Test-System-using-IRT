@@ -1,0 +1,140 @@
+﻿@{
+    ViewBag.Title = "Đăng ký tài khoản";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<script>
+    $("#dk").css({ 'background-color': '#096484' });
+</script>
+<div style="text-align:left">
+<div style="width:520px;text-align:center">
+    <h3>ĐĂNG KÝ TÀI KHOẢN</h3>
+</div>
+</div>
+<div style="text-align:right;float:left;width:200px;">
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;">Tên đăng nhập:<span style="color:red">*</span></p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;">Mật khẩu:<span style="color:red">*</span></p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;">Nhập lại mật khẩu:<span style="color:red">*</span></p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;">Họ và tên:<span style="color:red">*</span></p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;">Ngày sinh:</p>
+    <p style="padding-top:8px;height:34px;margin-bottom:0px;">Email:<span style="color:red">*</span></p>
+</div>
+<div style="float:left;width:320px;">
+@using (Html.BeginForm("TaoTaiKhoan", "TaiKhoan", FormMethod.Post, new { name = "DK" }))
+{
+    <input type="text" id="txtTenDN" name="txtTenDN" style="margin:2px;padding:2px;height:30px; width:300px;border-radius:3px;font-size:15px;border:solid 1px black;" onblur="KiemTraTenDN();" /><br />
+    <input type="password" id="pass" name="pass" style="margin:2px;padding:2px;height:30px; width:300px;border-radius:3px;font-size:15px;border:solid 1px black;" onkeyup="loiPass.innerText = ''; KiemTraMK();"/><br />
+    <input type="password" id="repass" name="repass" style="margin:2px;padding:2px;height:30px; width:300px;border-radius:3px;font-size:15px;border:solid 1px black;" onkeyup="loiRepass.innerText = ''; KiemTraMK();" /><br />
+    <input type="text" id="txtHoTen" name="txtHoTen" style="margin:2px;padding:2px;height:30px; width:300px;border-radius:3px;font-size:15px;border:solid 1px black;" onkeydown="loiHoTen.innerText = '';"/><br />
+    <input type="date" id="txtNgaySinh" name="txtNgaySinh" style="margin:2px;padding:2px;height:30px; width:150px;border-radius:3px;font-size:15px;border:solid 1px black;" onchange="loiNgaySinh.innerText = '';"/>
+    <span>Giới tính:</span>
+    <select id="gioiTinh" name="gioiTinh" style="margin:2px;padding:2px;height:30px; width:80px;border-radius:3px;font-size:15px;border:solid 1px black;">
+        <option value="Nam">
+            Nam
+        </option>
+        <option value="Nữ">
+            Nữ
+        </option>
+    </select><br />
+    <input id="email" name="email" style="margin:2px;padding:2px;height:30px; width:300px;border-radius:3px;font-size:15px;border:solid 1px black;" type="email" onkeyup="loiEmail.innerText = '';" onblur="KiemTraEmail();" />
+    <input type="button" value="Đăng ký" onclick="KiemTraSubmit();" />
+    <input type="reset" value="Reset" />
+}
+    </div>
+<div style="text-align:left;float:left;width:400px;color:red">
+    <p id="loiTenDN" style="padding-top:8px;height:34px;margin-bottom:0px;"></p>
+    <p id="loiPass" style="padding-top:8px;height:34px;margin-bottom:0px;"></p>
+    <p id="loiRepass" style="padding-top:8px;height:34px;margin-bottom:0px;"></p>
+    <p id="loiHoTen" style="padding-top:8px;height:34px;margin-bottom:0px;"></p>
+    <p id="loiNgaySinh" style="padding-top:8px;height:34px;margin-bottom:0px;"></p>
+    <p id="loiEmail" style="padding-top:8px;height:34px;margin-bottom:0px;"></p>
+</div>
+<script>
+    var LoitenDN = false;
+    var LoiMK = false;
+    var LoiEmail = false;
+    function KiemTraTenDN() {
+        if (txtTenDN.value.length < 1) {
+            return;
+        }
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/TaiKhoan/KiemTraTenDN?tenDN=" + txtTenDN.value,
+            dataType: "json",
+            success: function (data) {
+                if (data == "true") {
+                    loiTenDN.innerText = "Tên đăng nhập này đã tồn tại";
+                    LoitenDN = true;
+                } else {
+                    loiTenDN.innerText = "";
+                    LoitenDN = false;
+                }
+            }
+        });
+    }
+    function KiemTraMK() {
+        if (pass.value != repass.value) {
+            loiRepass.innerText = "Chưa khớp với mật khẩu";
+            LoiMK = true;
+        } else {
+            loiRepass.innerText = "";
+            LoiMK = false;
+        }
+    }
+    function KiemTraEmail() {
+        if (email.value.length < 1) {
+            return;
+        }
+        var testEmail = /^[A-Z0-9._%+-]+@@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+        if (!testEmail.test(email.value)){
+            loiEmail.innerText = "Email sai định dạng";
+            LoiEmail = true;
+            return;
+        }
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/TaiKhoan/KiemTraEmail?email=" + email.value,
+            dataType: "json",
+            success: function (data) {
+                if (data == "true") {
+                    loiEmail.innerText = "Email này đã được sử dụng";
+                    LoiEmail = true;
+                } else {
+                    loiEmail.innerText = "";
+                    LoiEmail = false;
+                }
+            }
+        });
+    }
+    function KiemTraSubmit() {
+        var Loi = false;
+        if (txtTenDN.value.length < 1) {
+            loiTenDN.innerText = "Bạn phải nhập tên đăng nhập";
+            Loi = true;
+        }
+        if (pass.value.length < 1) {
+            loiPass.innerText = "Bạn phải nhập mật khẩu";
+            Loi = true;
+        }
+        if (repass.value.length < 1) {
+            loiRepass.innerText = "Bạn phải nhập xác nhân mật khẩu";
+            Loi = true;
+        }
+        if (txtHoTen.value.length < 1) {
+            loiHoTen.innerText = "Bạn phải nhập họ tên";
+            Loi = true;
+        }
+        if (txtNgaySinh.value == "") {
+            loiNgaySinh.innerText = "Ngày sinh sai";
+            Loi = true;
+        }
+        if (email.value.length < 1) {
+            loiEmail.innerText = "Bạn phải nhập email";
+            Loi = true;
+        }
+        if (!Loi && !LoiMK && !LoiEmail && !LoitenDN) {
+            document.DK.submit();
+        }
+    }
+</script>

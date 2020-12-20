@@ -1,0 +1,28 @@
+﻿@using ThiTracNghiem.Models
+@{
+    List<MonHoc> MH = new List<MonHoc>();
+    if (ViewBag.MonHoc != null)
+    {
+        MH = ViewBag.MonHoc;
+    }
+}
+<table border="1" cellpadding="4" cellspacing="6" class="BangHienThi">
+    <tr class="TieuDe">
+        <td colspan="4" class="TieuDeBang">Môn học</td>
+    </tr>
+    <tr class="TieuDe">
+        <td class="TieuDeCot">ID</td>
+        <td class="TieuDeCot">Tên môn học</td>
+        <td class="TieuDeCot">Xóa</td>
+        <td class="TieuDeCot">Xem chương</td>
+    </tr>
+    @for (int i = 0; i < MH.Count; i++)
+    {
+        <tr>
+            <td style="padding:2px;">@MH[i].idMonHoc</td>
+            <td style="padding:2px;"><input type="text" id="EditMonHoc_@MH[i].idMonHoc" value="@MH[i].tenMonHoc" onblur="LuuEditMonHoc('@MH[i].idMonHoc')" /></td>
+            <td style="padding:2px;"><img src="~/Images/xoa.png" alt="Xóa" onclick="XoaMonHoc('@MH[i].idMonHoc');" /></td>
+            <td style="padding:2px;"><img src="~/Images/jTxonx8Lc.png" alt="Xem" width="20" onclick="XemChuong('@MH[i].idMonHoc')" /></td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["Admin"] == null)
+    {
+        Response.Redirect("/Admin/Admin");
+    }
+}
+@using ThiTracNghiem.Models;
+<script>
+    var id = '';
+</script>
+<div style="width:100%;background-color:#52accc;position:fixed;z-index:10;display:block">
+    <div style="width:80%;float:left">
+        <ul class="nav nav-pills">
+            <li role="presentation">
+                <a href="/TrangThiSinh/TrangChu" target="_blank" style="color:white;">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    <span>Trắc nghiệm online</span>
+                </a>
+            </li>
+            <li role="presentation" id="tatcacauhoi">
+                <a href="/QuanLyDeThi/QLDeThi" style="color:white;">
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                    <span>Tất cả câu hỏi</span>
+                </a>
+            </li>
+            @*<li role="presentation" id="mntch">
+                <a href="/QuanLyDeThi/TaoCauHoi" style="color:white;">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <span>Tạo câu hỏi</span>
+                </a>
+            </li>*@
+            <li role="presentation" id="qlts">
+                <a href="/QuanLyThiSinh/QuanLyThiSinh" style="color:white;">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <span>Quản lý thí sinh</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div style="width:20%;float:left">
+        @if (Session["Admin"] != null)
+        {
+            <ul class="nav nav-pills">
+                <li role="presentation" id="cnadm">
+                    <a href="/Admin/CaNhan" style="color:white;">
+                        <span>Hello @(((TaiKhoanAdmin)Session["Admin"]).hoTen)</span>
+                    </a>
+                </li>
+                <li role="presentation" id="admdx">
+                    <a href="/Admin/DangXuat" style="color:white;">
+                        <span>Đăng xuất</span>
+                    </a>
+                </li>
+            </ul>
+        }
+    </div>
+</div>
+<div style="width:100%;">
+    <div style="margin-top:40px;margin-left:5%;padding:10px;" id="NoiDungChinh">
+        @RenderBody()
+    </div>
+</div>

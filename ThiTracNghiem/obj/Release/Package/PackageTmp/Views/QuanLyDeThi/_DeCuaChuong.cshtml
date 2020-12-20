@@ -1,0 +1,24 @@
+﻿@using ThiTracNghiem.Models
+@{
+    List<DeThi> DT = new List<DeThi>();
+    if (ViewBag.DeThi != null)
+    {
+        DT = ViewBag.DeThi;
+    }
+}
+<table border="1" cellpadding="4" cellspacing="6" class="BangHienThi">
+    <tr class="TieuDe">
+        <td colspan="2" class="TieuDeBang">Đề thi</td>
+    </tr>
+    <tr class="TieuDe">
+        <td class="TieuDeCot">ID</td>
+        <td class="TieuDeCot">Tên đề thi</td>
+    </tr>
+    @for (int i = 0; i < DT.Count; i++)
+    {
+        <tr>
+            <td style="padding:2px;">@DT[i].idDeThi</td>
+            <td style="padding:2px;"><input type="text" id="EditDeThi_@DT[i].idDeThi" value="@DT[i].tenDeThi" onblur="LuuEditDeThi('@DT[i].idDeThi')" /></td>
+        </tr>
+    }
+</table>

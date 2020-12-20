@@ -1,0 +1,60 @@
+﻿@using ThiTracNghiem.Models
+@model IEnumerable<TaiKhoanAdmin>
+<div>
+    <table border="1" cellpadding="4" cellspacing="6" class="BangHienThi" style="width:50%">
+        <tr class="TieuDe">
+            <td class="TieuDeBang" colspan="5">Quản Lý Tài Khoản Admin</td>
+        </tr>
+        <tr class="TieuDe">
+            <td class="TieuDeCot">Tên ĐN</td>
+            <td class="TieuDeCot">Họ tên</td>
+            <td class="TieuDeCot">Admin</td>
+            <td class="TieuDeCot">Reset mật khẩu</td>
+            <td class="TieuDeCot">Xóa</td>
+        </tr>
+        @foreach (TaiKhoanAdmin TS in Model)
+        {
+            <tr>
+                <td style="padding:2px;">@TS.tenDagNhap</td>
+                <td style="padding:2px;">@TS.hoTen</td>
+                <td style="padding:2px;">
+                    @if (TS.isAdmin)
+                    {
+                        <input type="checkbox" disabled checked/>
+                    }
+                    else
+                    {
+                        <input type="checkbox" disabled />
+                    }
+                </td>
+                <td style="padding:2px;">
+                    <input type="button" id="resetMK" value="Reset" onclick="ResetMK('@TS.tenDagNhap');" />
+                </td>
+                <td style="padding:2px;">
+                    <img src="~/Images/xoa.png" width="15" onclick="XoaAdmin('@TS.tenDagNhap')" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div id="PhanTrang">
+    @if (ViewBag.PhanTrang.tongSoTrang == 0)
+    {
+        <input type="hidden" id="trang" name="trang" value="1" />
+    }
+    @for (int j = 1; j <= ViewBag.PhanTrang.tongSoTrang; j++)
+    {
+        string nen = "", click = "ChuyenTrang(" + j + ");";
+        if (j == ViewBag.PhanTrang.trangHienTai)
+        {
+            nen = "background-color:silver";
+            <input type="hidden" id="trang" name="trang" value="@j" />
+            click = "";
+        }
+        <a class="Trang" style="@nen" onclick="@click" href="javascript:void(0)">
+            <div>
+                <span> @j</span>
+            </div>
+        </a>
+    }
+</div>

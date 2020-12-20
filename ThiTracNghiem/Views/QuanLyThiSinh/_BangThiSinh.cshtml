@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ThiSinh>
+@using ThiTracNghiem.Models;
+<div>
+    <table border="1" cellpadding="4" cellspacing="6" class="BangHienThi" style="width:100%; padding-right:10%">
+        <tr class="TieuDe">
+            <td class="TieuDeBang" colspan="11">Quản Lý Thí Sinh</td>
+        </tr>
+        <tr class="TieuDe">
+            <td class="TieuDeCot">Tên ĐN</td>
+            <td class="TieuDeCot">Họ tên</td>
+            <td class="TieuDeCot">Ngày sinh</td>
+            <td class="TieuDeCot">Gới tính</td>
+            <td class="TieuDeCot">Email</td>
+            <td class="TieuDeCot">Số bài làm</td>
+            <td class="TieuDeCot">Tổng điểm</td>
+            <td class="TieuDeCot">ĐTB</td>
+            <td class="TieuDeCot">Xếp loại</td>
+            <td class="TieuDeCot">Reset MK</td>
+            <td class="TieuDeCot">Xóa</td>
+        </tr>
+        @foreach (ThiSinh TS in Model)
+        {
+            <tr>
+                <td style="padding:2px;">@TS.tenDangNhap</td>
+                <td style="padding:2px;">@TS.hoTen</td>
+                <td style="padding:2px;">@String.Format("{0:dd/MM/yyyy}",TS.ngaySinh)</td>
+                <td style="padding:2px;">@TS.gioiTinh</td>
+                <td style="padding:2px;">@TS.email</td>
+                <td style="padding:2px;">@TS.soBaiLam</td>
+                <td style="padding:2px;">@String.Format("{0:#.00}",TS.tongSoDiem)</td>
+                <td style="padding:2px;">@String.Format("{0:#.00}", TS.DTB)</td>
+                <td style="padding:2px;">@TS.xepLoai</td>
+                <td style="padding:2px;">
+                    <input type="button" value="Reset" onclick="ResetMK('@TS.idThiSinh');" />
+                </td>
+                <td style="padding:2px;">
+                    <img src="~/Images/xoa.png" width="15" onclick="XoaThiSinh('@TS.idThiSinh')"/>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div id="PhanTrang">
+    @if (ViewBag.PhanTrang.tongSoTrang == 0)
+    {
+        <input type="hidden" id="trang" name="trang" value="1" />
+    }
+    @for (int j = 1; j <= ViewBag.PhanTrang.tongSoTrang; j++)
+    {
+        string nen = "", click = "ChuyenTrang(" + j + ");";
+        if (j == ViewBag.PhanTrang.trangHienTai)
+        {
+            nen = "background-color:silver";
+            <input type="hidden" id="trang" name="trang" value="@j" />
+            click = "";
+        }
+        <a class="Trang" style="@nen" onclick="@click" href="javascript:void(0)">
+            <div>
+                <span> @j</span>
+            </div>
+        </a>
+    }
+</div>

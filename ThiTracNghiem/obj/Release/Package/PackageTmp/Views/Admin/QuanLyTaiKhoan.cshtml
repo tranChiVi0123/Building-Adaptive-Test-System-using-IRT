@@ -1,0 +1,82 @@
+﻿@model IEnumerable<TaiKhoanAdmin>
+@{
+    ViewBag.Title = "Tài khoản";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using ThiTracNghiem.Models
+<script>
+    $("#cnadm").css({ 'background-color': '#096484' });
+</script>
+<div>
+@using (Html.BeginForm("ThemTaiKhoan", "Admin", FormMethod.Post, new { name = "TTK" }))
+{
+    <div>
+        Tên đăng nhập:* <input type="text" name="TDN" id="TDN" style="margin:5px;width:300px;height:30px;border-radius:3px;"/><br />
+        Họ và tên    :* <input type="text" name="hoTen" id="hoTen" style="margin:5px;margin-left:38px;width:300px;height:30px;border-radius:3px;" /><br />
+        <input type="radio" value="1" name="admin" style="margin-left:115px"> là Admin<br />
+        <input type="button" value="Thêm tài khoản" style="margin-left:115px" onclick="KiemTra();" />
+    </div>
+}
+</div><hr style="border-color:black"/>
+<input type="text" id="txtTim" style="width:400px" placeholder="Nhập họ tên hoặc tên đăng nhập muốn tìm" onkeyup="TimKiemAdmin();" />
+<br /><br />
+<div id="BangTaiKhoan">
+    @Html.Partial("_BangTaiKhoan")
+</div>
+<script>
+    function KiemTra() {
+        if (document.getElementById("TDN").value == "") {
+            alert("Bạn phải nhập tên đăng nhập");
+            return;
+        }
+        if (document.getElementById("hoTen").value == "") {
+            alert("Bạn phải nhập họ tên");
+            return;
+        }
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/Admin/LayTaiKhoan?tDN=" + document.getElementById("TDN").value,
+            dataType: "json",
+            success: function (data) {
+                if (data == "true") {
+                    alert("Tên đăng nhập đã tồn tại");
+                    return;
+                }                
+                document.TTK.submit();
+            }
+        });
+    }
+    function XoaAdmin(tenDangNhap) {
+        ReloadTK(tenDangNhap, txtTim.value, trang.value);
+    }
+    function TimKiemAdmin() {
+        ReloadTK("", txtTim.value, "");
+    }
+    function ChuyenTrang(Trang) {
+        ReloadTK("", txtTim.value, Trang);
+    }
+    function ReloadTK(xoa, tim, trang) {
+        if (trang == "") {
+            trang = 1;
+        }
+        $.ajax({
+            type: "GET",
+            url: "/Admin/ReLoadTaiKhoan?tDN=" + xoa + "&&trang=" + trang + "&&tim=" + tim,
+            success: function (data) {
+                $("#BangTaiKhoan").html(data.toString());
+            }
+        });
+    }
+    function ResetMK(tenDN) {
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/Admin/ResetMK?tDN=" + tenDN,
+            dataType: "json",
+            success: function (data) {
+                alert("Đã reset mật khẩu cho tài khoản "+ tenDN + " thành công")
+            }
+        });
+    }
+</script>

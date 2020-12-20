@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Làm bài thi";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    int i = 1;
+}
+@using ThiTracNghiem.Models
+<script>
+    $("#trangchu").css({ 'background-color': '#096484' });
+</script>
+<div style="top:50px;right:200px;;position:fixed;border: solid 2px red;background-color:#f8acac; padding-left:10px; padding-right:10px; color:red;width:auto">
+    <span style="font-weight:bold;font-size:20px;" id="m"></span> :
+    <span style="font-weight:bold;font-size:20px;" id="s"></span>
+</div>
+<script>
+    var CauHoi = [];
+</script>
+@using (Html.BeginForm("ChamDiem", "TrangThiSinh", FormMethod.Post, new { name = "LamBai" }))
+{
+    <input type="hidden" value="@ViewBag.idDeThi" name="idDethi"/>
+    <div style="text-align:left">
+        @foreach (CauHoi CH in ViewBag.CauHoi)
+        {
+            <div id="CauHoi_@CH.idCauHoi" style="margin-top:10px" class="CauHoi">
+                <div>
+                    <table>
+                        <tr>
+                            <td style="vertical-align:top">
+                                <span style="font-weight:bold;color:blue;margin-right:5px;">Câu @i: </span>
+                            </td>
+                            <td>
+                                @Html.Raw(CH.noiDung)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                @{
+            List<DapAn> DA = CH.CacDapAn.Where(x => x.idCauHoi == CH.idCauHoi).ToList();
+            int soDapAnDung = DA.Where(x => x.isDapAnDung == true).Count();
+            char cau = 'A';
+                }
+                <div style="margin-left:30px;">
+                    @for (int j = 0; j < DA.Count; j++)
+                    {
+                        if (soDapAnDung == 1)
+                        {
+                            <table>
+                                <tr>
+                                    <td style="vertical-align:top"><input type="radio" style="margin-right:10px;" id="dapanduocchon_@CH.idCauHoi@DA[j].idDapAn" name="DapAnCuaCauHoi_@CH.idCauHoi" value="@DA[j].idDapAn" /></td>
+                                    <td style="vertical-align:top">
+                                        <p style="margin-right:5px; font-weight:bold">
+                                            @cau.
+                                        </p>
+                                    </td>
+                                    <td>
+                                        @Html.Raw(DA[j].noiDung)
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                        else
+                        {
+                            <table>
+                                <tr>
+                                    <td style="vertical-align:top"><input type="checkbox" style="margin-right:10px;" id="DapAnDuocChon_@CH.idCauHoi@DA[j].idDapAn" name="DapAnCuaCauHoi_@CH.idCauHoi" value="@DA[j].idDapAn" /></td>
+                                    <td style="vertical-align:top">
+                                        <p style="margin-right:5px; font-weight:bold">
+                                            @cau.
+                                        </p>
+                                    </td>
+                                    <td>
+                                        @Html.Raw(DA[j].noiDung)
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                        cau++;
+                    }
+                </div>
+            </div>
+            <script>
+                CauHoi.push('@CH.idCauHoi');
+            </script>
+                    i++;
+        }
+    </div>
+    <input type="hidden" id="CauHoiDaLam" name="CauHoiDaLam" value="" />
+    <input type="button" value="Nộp Bài" onclick="NopBai();" />
+}
+<script>
+    var m = parseInt('@ViewBag.thoiGian')-1;
+    var s = 59;
+    var timeout;
+    start();
+    function start() {
+        if (s === -1) {
+            m -= 1;
+            s = 59;
+        }
+        if (m === -1) {
+            NopBai();
+            return;
+        }
+        document.getElementById('m').innerText = m.toString();
+        document.getElementById('s').innerText = s.toString();
+        timeout = setTimeout(function () {
+            s--;
+            start();
+        }, 1000);
+    }
+    function NopBai() {
+        clearTimeout(timeout);
+        CauHoiDaLam.value = CauHoi.toString();
+        document.LamBai.submit();
+    }
+</script>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LichSuLamBai>
+@{
+    ViewBag.Title = "Lịch sử làm bài";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@using ThiTracNghiem.Models
+@{
+    DataContext datacontext = new DataContext();
+}
+<script>
+    $("#lslb").css({ 'background-color': '#096484' });
+</script>
+<div id="LSLB">
+    @Html.Partial("_BangLichSu",Model)
+</div>
+<script>
+    function LayChuoiChk(name) {
+        var chuoi = "";
+        for (var i = 0; i < document.getElementsByName(name).length; i++) {
+            if (document.getElementsByName(name)[i].checked) {
+                chuoi += document.getElementsByName(name)[i].value + ",";
+            }
+        }
+        return chuoi.substring(0, chuoi.length - 1);
+    }
+    function Xoa(idLSLB) {
+        ReLoad(idLSLB, trang.value);
+    }
+    function XoaNhieu() {
+        ReLoad(LayChuoiChk("chkChon"), trang.value)
+    }
+    function ChuyenTrang(Trang) {
+        ReLoad("", Trang);
+    }
+    function ReLoad(xoaLS, trang) {
+        if (trang == "") {
+            trang = 1;
+        }
+        $.ajax({
+            type: "GET",
+            url: "/TrangThiSinh/ReLoadLS?xoaLS=" + xoaLS + "&&trang=" + trang,
+            success: function (data) {
+                $("#LSLB").html(data.toString());
+            }
+        });
+    }
+</script>

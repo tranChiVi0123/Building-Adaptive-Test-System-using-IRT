@@ -1,0 +1,29 @@
+﻿<input type="text" id="tenMonHoc" placeholder="Nhập tên môn học" style="margin:5px;width:90%" />
+<br />
+<input type="button" value="Thêm" onclick="ThemMH()" style="margin-left:5px;" />
+<input type="button" value="Thoát" onclick="ThoatThemMH()" />
+<script>
+    function ThemMH() {
+        if (tenMonHoc.value.length<1) {
+            alert("Bạn phải nhập tên môn học");
+            return;
+        }
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/ThemMonHoc?tenMH="+tenMonHoc.value,
+            success: function (data) {
+                $("#MenuTrai").html(data.toString());
+            }
+        });
+    }
+    function ThoatThemMH() {
+        $.ajax({
+            type: "GET",
+            url: "/QuanLyDeThi/MenuTrai",
+            success: function (data) {
+                $("#MenuTrai").html(data.toString());
+            }
+        });
+    }
+</script>
+

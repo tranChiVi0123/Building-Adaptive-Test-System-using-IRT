@@ -1,0 +1,36 @@
+﻿@model IEnumerable<LichSuLamBai>
+@using ThiTracNghiem.Models
+<h3>Các đề thi mà @Session["tenDangNhap"] đã làm</h3>
+<div style="text-align:left; min-height:400px;">
+    @foreach (LichSuLamBai LS in Model)
+    {
+        <input type="checkbox" value="@LS.idLichSuLamBai" id="LichSu_@LS.idLichSuLamBai" name="chkChon"/>
+        <img src="~/Images/xoa.png" onclick="Xoa('@LS.idLichSuLamBai');" width="15" />
+        <span style="margin-right:15px;color:silver">@String.Format("{0:hh:mm dd/MM/yyy}", LS.thoiGian): </span>
+        <a href="/TrangThiSinh/ChiTietLichSu?idLichSu=@LS.idLichSuLamBai">
+            <span>@Html.Raw(LS.noiDung)</span><br />
+        </a>
+    }
+    <input type="button" value="Xóa các mục đã chọn" onclick="XoaNhieu();" style="margin-top:20px;" />
+</div>
+<div id="PhanTrang">
+    @if (ViewBag.PhanTrang.tongSoTrang == 0)
+    {
+        <input type="hidden" id="trang" name="trang" value="1" />
+    }
+    @for (int j = 1; j <= ViewBag.PhanTrang.tongSoTrang; j++)
+    {
+        string nen = "", click = "ChuyenTrang(" + j + ");";
+        if (j == ViewBag.PhanTrang.trangHienTai)
+        {
+            nen = "background-color:silver";
+            <input type="hidden" id="trang" name="trang" value="@j" />
+            click = "";
+        }
+        <a class="Trang" style="@nen" onclick="@click" href="javascript:void(0)">
+            <div>
+                <span> @j</span>
+            </div>
+        </a>
+    }
+</div>

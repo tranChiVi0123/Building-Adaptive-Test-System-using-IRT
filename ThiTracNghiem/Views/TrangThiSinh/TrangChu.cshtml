@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "Trắc nghiệm online";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    List<Chuong> C = new List<Chuong>();
+    List<DeThi> DT = new List<DeThi>();
+}
+@using ThiTracNghiem.Models;
+<script>
+    $("#trangchu").css({ 'background-color': '#096484' });
+</script>
+@using (Html.BeginForm("ThiDeNgauNhien", "TrangThiSinh", FormMethod.Post, new { name = "DeNgauNhien" }))
+{
+<div style="text-align:left; border:solid 1px blue;border-radius:5px;padding:10px;">
+    <span style="font-weight:bold;font-size:16px;">PHƯƠNG PHÁP TRẮC NGHIỆM</span><br />
+    <input type="radio" value="0" name="cachLam" checked onchange="SoCauHoi.disabled = false; Chuong.disabled = false;" />Trắc nghiệm khách quan<br />
+    <input type="radio" value="2" name="cachLam" onchange="SoCauHoi.disabled = true; Chuong.disabled = true;" />Trắc nghiệm thích ứng - IRT (mô hình 2 tham số)<br />
+    <span>Môn học: </span>
+    <select id="MonHoc" name="MonHoc" onchange="ChonChuong();">
+        @foreach (MonHoc MH in ViewBag.MonHoc)
+        {
+            <option value="@MH.idMonHoc">@MH.tenMonHoc</option>
+        }
+        <option value="0">Tất cả</option>
+    </select>
+    <select id="Chuong" name="Chuong" onchange="CauToiDa();" style="display:none">
+        @foreach (Chuong ch in ViewBag.Chuong)
+        {
+            <option value="@ch.idChuong">@ch.tenChuong</option>
+        }
+        <option value="0">Tất cả</option>
+    </select>
+    <span>Nhập số câu hỏi (tối đa <span id="cauHoiTD"></span> câu): </span>
+    <input type="text" style="width:40px" name="SoCauHoi" value="0" id="SoCauHoi" />
+    @if (Session["tenDangNhap"] == null)
+    {<a href="/TaiKhoan/UserDangNhap">
+            <input type="button" value="Bắt đầu làm bài" />
+        </a>
+    }
+    else
+    {
+        <input type="button" id="LamBaiNgauNhien" value="Bắt đầu làm bài" onclick="KiemTraDeNgauNhien();" />
+    }
+</div>
+}
+<hr />
+<script>
+    CauToiDa();
+    var soCauHoiToiDa = '0';
+    function ChonChuong() {
+        var idMH = $("#MonHoc > option:selected").attr("value");
+        if (idMH != '0') {
+            $("#Chuong").attr('disabled', false);
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "/TrangThiSinh/getChuong?idMonHoc=" + idMH,
+                dataType: "json",
+                success: function (data) {
+                    $('#ChuongDiv > div').remove();
+                    if (data.length > 0) {
+                        var options = '';
+                        for (c in data) {
+                            var ch = data[c];
+                            options += "<option value='" + ch.idChuong + "'>" + ch.tenChuong + "</option>";
+                        }
+                        options += '<option value="0">Tất cả</option>';
+                        $("#Chuong").html(options);
+                    }
+                    CauToiDa();
+                }
+            });
+        } else {
+            $('#ChuongDiv > div').remove();
+            $("#Chuong").html('<option value="0">Tất cả</option>');
+            $("#Chuong").attr('disabled', true);
+            CauToiDa();
+        }
+    }
+    function CauToiDa() {
+        var idMonHoc = $("#MonHoc > option:selected").attr("value");
+        var idChuong = $("#Chuong > option:selected").attr("value");
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/TrangThiSinh/getCauHoiToiDa?idMonHoc=" + idMonHoc + "&&idChuong=" + idChuong,
+            dataType: "json",
+            success: function (data) {
+                $("#cauHoiTD").html(data.toString());
+                if (data == "0") {
+                    LamBaiNgauNhien.disabled = true;
+                } else {
+                    LamBaiNgauNhien.disabled = false;
+                }
+                soCauHoiToiDa = data.toString();
+            }
+        });
+    }
+    function KiemTraDeNgauNhien() {
+        if (parseInt(SoCauHoi.value) > parseInt(soCauHoiToiDa)) {
+            alert("Số câu hỏi yêu cầu lớn hơn số câu hỏi hiện có");
+            return;
+        }
+        if (!SoCauHoi.disabled) {
+            if (parseInt(SoCauHoi.value) < 1) {
+                alert("Phải có ít nhất một câu hỏi trong đề");
+                return;
+            }
+        }
+        document.DeNgauNhien.submit();
+    }
+</script>

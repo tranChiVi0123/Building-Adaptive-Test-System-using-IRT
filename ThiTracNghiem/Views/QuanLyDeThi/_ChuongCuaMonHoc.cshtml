@@ -1,0 +1,27 @@
+﻿@using ThiTracNghiem.Models
+@{
+    List<DinhKienThuc> C = new List<DinhKienThuc>();
+    if (ViewBag.DinhKienThuc != null)
+    {
+        C = ViewBag.DinhKienThuc;
+    }
+}
+<table border="1" cellpadding="4" cellspacing="6" class="BangHienThi">
+    <tr class="TieuDe">
+        <td colspan="4" class="TieuDeBang">Đỉnh kiến thức</td>
+    </tr>
+    <tr class="TieuDe">
+        <td class="TieuDeCot">ID</td>
+        <td class="TieuDeCot">Tên đỉnh</td>
+    </tr>
+    @for (int i = 0; i < C.Count; i++)
+    {
+        <tr>
+            <td style="padding:2px;">@C[i].idDinhKienThuc
+            <input type="hidden" name="IDChuong" value="@C[i].idDinhKienThuc" />
+            </td>
+            <td style="padding:2px;"><input type="text" id="EditChuong_@C[i].idDinhKienThuc" value="@C[i].tenDinhKienThuc" onblur="LuuEditChuong('@C[i].idDinhKienThuc')" /></td>
+        </tr>
+    }
+</table>
+
